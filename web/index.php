@@ -25,3 +25,5 @@ function cuerpo()
     Hola, estás en Index.php
 <?php
 }
+
+// Comentario en la barra dev
