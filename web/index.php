@@ -6,14 +6,18 @@ include_once(dirname(__FILE__) . "/cabecera.php");
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION");
+inicioCuerpo("2DAW APLICACION INDEX");
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
 
 //vista
 function cabecera() 
-{}
+{
+    ?>
+    <!--Esto va en el head-->
+    <?php
+}
 
 //vista
 function cuerpo()
