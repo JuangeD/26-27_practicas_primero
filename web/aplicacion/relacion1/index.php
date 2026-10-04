@@ -22,7 +22,10 @@ function cabecera() {
 
 function cuerpo() {
 ?>
-
+    <h2>Ejercicios</h2>
+    <nav>
+        <a href="ejercicio1.php">Act1</a>
+    </nav>
 <?php
 }
 
