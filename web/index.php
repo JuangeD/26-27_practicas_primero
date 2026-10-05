@@ -24,7 +24,10 @@ function cuerpo()
 {
 ?>
     <br><br>
-    <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+
+    <p>Esta es una web contiene todos los ejemplos copiados en clase
+        y todas las relaciones de ejercicios.
+    </p>
 <?php
 }
 

@@ -23,8 +23,12 @@ function cabecera() {
 function cuerpo() {
 ?>
     <h2>Ejercicios</h2>
-    <nav>
-        <a href="ejercicio1.php">Act1</a>
+    <nav class="barraMenu">
+        <ul>
+            <li><a href="ejercicio1.php">Act1 - Librería Math</a></li>
+            <li>-</li>
+            <li><a href="ejercicio2.php">Act2 - Lanzar dado</a></li>
+        </ul>
     </nav>
 <?php
 }
