@@ -1,10 +1,9 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-// Definición de constantes
-define("NUME", 25);
-const NUME1 = 56;
 
 //controlador
+
+
 //dibuja la plantilla de la vista
 inicioCabecera("ARRAYS");
 cabecera();

@@ -2,9 +2,9 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 // Controlador
-const numLanzamientos = 6;
+const NUMLANZAMIENTOS = 6;
 
-$resultadoLanzamientos=[];
+$resultadoLanzamientos=realizarLanzamientos(NUMLANZAMIENTOS);
 
 
 
@@ -13,7 +13,7 @@ inicioCabecera("Ejercicio 2");
 cabecera();
 finCabecera();
 inicioCuerpo("EJERCICIO 2 - LANZAMIENTO DE DADO");
-cuerpo();
+cuerpo($resultadoLanzamientos);
 finCuerpo();
 
 //*********************************************************
@@ -25,17 +25,31 @@ function cabecera() {
     <?php
 }
 
-
-function cuerpo() {
+function cuerpo($resultados) {
     ?>
         <h1 style="text-align: center;">Lanzamiento de un dado</h1>
     <?php
+
+    foreach ($resultados as $clave => $valor) {
+        if($valor!=0)
+            echo "el ". $clave+1 ." ha salido {$valor} con un porcentaje de ". calculaPorcentajeLado($valor) ."%<br>";
+    }
 }
 
 function realizarLanzamientos($numLanzamientos) {
-    $numeros=[];
+    $numeros= array_fill(0, NUMLANZAMIENTOS, 0);
+    $ladoDado=0;
 
     for ($i=0; $i < $numLanzamientos; $i++) { 
-        
+        $ladoDado=rand(1,6);
+        $numeros[$ladoDado-1]++;
+
+        echo "lanzamiento ". $i+1 ." del dado: {$ladoDado}<br>";
     }
+
+    return $numeros;
+}
+
+function calculaPorcentajeLado($lado) {
+    return ($lado/NUMLANZAMIENTOS)*100;
 }
