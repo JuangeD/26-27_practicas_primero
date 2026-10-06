@@ -19,8 +19,16 @@ function cuerpo()
     <br><br>
     Elemento de pruebas
     <br><br>
-    <a href="basicas.php">Funcionamiento básico</a>
-    <br>
-    <a href="pasopara.php">Comunicación controlador-vista</a>
+
+    <nav class="barraMenu">
+        <ul>
+            <li><a href="basicas.php">Funcionamiento básico</a></li>
+            <li>-</li>
+            <li><a href="pasopara.php">Comunicación controlador-vista</a></li>
+            <li>-</li>
+            <li><a href="arrays.php">Arrays</a></li>
+        </ul>
+    </nav>
+    
 <?php
 }
