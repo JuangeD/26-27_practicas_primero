@@ -4,7 +4,7 @@ include_once(dirname(__FILE__) . "/../../cabecera.php");
 // Controlador
 const NUMLANZAMIENTOS = 6;
 
-$resultadoLanzamientos=realizarLanzamientos(NUMLANZAMIENTOS);
+$resultadoLanzamientos=[];
 
 
 
@@ -29,6 +29,8 @@ function cuerpo($resultados) {
     ?>
         <h1 style="text-align: center;">Lanzamiento de un dado</h1>
     <?php
+
+    $resultados=realizarLanzamientos(NUMLANZAMIENTOS);
 
     foreach ($resultados as $clave => $valor) {
         if($valor!=0)
