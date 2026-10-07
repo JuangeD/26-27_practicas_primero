@@ -60,6 +60,11 @@ footer div {
     font-style: italic;
 }
 
+#barraUbicacion {
+    background-color: #adefff;
+    color: #000000;
+}
+
 .boton{
     background-color: blue;
     color:white;

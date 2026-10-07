@@ -2,13 +2,25 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 //controlador
-
+$barra=[
+    [
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
+    ],
+    [
+        "TEXTO"=>"pruebas",
+        "ENLACE"=>"/aplicacion/pruebas/index.php"
+    ],
+    [
+        "TEXTO"=>"eje. arrays"
+    ]
+];
 
 //dibuja la plantilla de la vista
 inicioCabecera("ARRAYS");
 cabecera();
 finCabecera();
-inicioCuerpo("EJEMPLOS ARRAYS");
+inicioCuerpo("EJEMPLOS ARRAYS", $barra);
 cuerpo(); //llamo a la vista
 finCuerpo();
 // **********************************************************

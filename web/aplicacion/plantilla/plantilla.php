@@ -48,7 +48,7 @@ function finCabecera()
 <?php   
 }
 
-function inicioCuerpo($cabecera)
+function inicioCuerpo(string $cabecera, array $ubicacion=[])
 {
     global $acceso;
 
@@ -73,7 +73,36 @@ function inicioCuerpo($cabecera)
                  </ul> 
                 
             </nav>
-            
+            <div id="barraUbicacion">
+                <?php
+                if($ubicacion)
+                {
+                    
+                    foreach ($ubicacion as $elem) 
+                    {
+                        if(isset($elem["ENLACE"]))
+                        {
+                            echo "<a &nbsp;&nbsp; href='{$elem["ENLACE"]}' >";
+                            
+                        } 
+                        
+                        echo $elem["TEXTO"];
+
+                        if(isset($elem["ENLACE"]))
+                        {
+                            echo "</a>";
+                        }
+
+                        if(isset($elem["ADICIONAL"]))
+                            echo $elem["ADICIONAL"];
+                        else
+                            echo "&nbsp;&nbsp;";
+                    }
+                }
+
+                ?>
+            </div>
+
             <div>
 <?php   
 }
@@ -94,4 +123,9 @@ function finCuerpo()
     </body>
 </html>
 <?php
+}
+
+// Barra de navegación
+function historial() {
+    echo $_SERVER['HTTP_REFERER'];
 }

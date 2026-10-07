@@ -2,13 +2,23 @@
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 //CONTROLADOR
+$barra=[
+    [
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
+    ],
+    [
+        "TEXTO"=>"relacion1"
+    ]
+];
+
 
 //*****************************
 //DIBUJAR PLANTILLA VISTA
 inicioCabecera("Relación 1");
 cabecera();
 finCabecera();
-inicioCuerpo("Relación 1");
+inicioCuerpo("RELACIÓN 1", $barra);
 cuerpo();
 finCuerpo();
 //*****************************
@@ -28,6 +38,8 @@ function cuerpo() {
             <li><a href="ejercicio1.php">Act1.Librería Math</a></li>
             <li>-</li>
             <li><a href="ejercicio2.php">Act2.Lanzar dado</a></li>
+            <li>-</li>
+            <li><a href="ejercicio3.php">Act3.Arrays</a></li>
         </ul>
     </nav>
 <?php
