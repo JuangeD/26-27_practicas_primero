@@ -79,7 +79,7 @@ function cabecera() {
     <?php
 }
 
-function cuerpo($array1, $array2, $array3) {
+function cuerpo(array $array1, array $array2, array $array3) {
     ?>
         <!-- HTML -->
     <?php
@@ -93,7 +93,7 @@ function cuerpo($array1, $array2, $array3) {
     mostrarArray($array3);
 }
 
-function mostrarArray($array) {
+function mostrarArray(array $array) {
     foreach ($array as $elem => $val) {
         if(!is_array($val))
             echo "elemento {$elem} con valor {$val}<br>";

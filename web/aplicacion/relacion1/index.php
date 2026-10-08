@@ -40,6 +40,10 @@ function cuerpo() {
             <li><a href="ejercicio2.php">Act2.Lanzar dado</a></li>
             <li>-</li>
             <li><a href="ejercicio3.php">Act3.Arrays</a></li>
+            <li>-</li>
+            <li><a href="ejercicio4.php">Act4.TrianguloNum</a></li>
+            <li>-</li>
+            <li><a href="ejercicio5.php">Act5.ArrayVector</a></li>
         </ul>
     </nav>
 <?php
