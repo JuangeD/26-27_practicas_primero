@@ -51,6 +51,7 @@ function cuerpo(array $array1, array $array2) {
     echo "<br>Segundo array:<br>";
     mostrarArray($array2);
 }
+
 //Funciones
 function generarArraySinParametros() {
     

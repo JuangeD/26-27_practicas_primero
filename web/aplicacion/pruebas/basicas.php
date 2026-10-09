@@ -39,6 +39,8 @@ function cuerpo()
     <?php
         echo "Esto es código php"; // Esto es un comentario
 
+        $fechaHora = date("d/m/Y H:i:s");
+        echo  "<br>". $fechaHora ."<br>";
         $var1=25;
         $cadena='esto es una cadena';
 

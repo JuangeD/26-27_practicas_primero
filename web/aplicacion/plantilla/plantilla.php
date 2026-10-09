@@ -117,6 +117,9 @@ function finCuerpo()
                 <hr width="90%"  />  
                 <div>
                     &copy; Copyright by Juange
+                    <?php
+                    echo " - " . date("d/m/Y H:i:s"); 
+                    ?>
                 </div>
             </footer>
         </div>
