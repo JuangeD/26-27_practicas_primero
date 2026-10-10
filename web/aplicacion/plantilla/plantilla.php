@@ -48,7 +48,7 @@ function finCabecera()
 <?php   
 }
 
-function inicioCuerpo($cabecera)
+function inicioCuerpo(string $cabecera, array $ubicacion=[])
 {
     global $acceso;
 
@@ -63,13 +63,46 @@ function inicioCuerpo($cabecera)
             <div id="barraLogin">
                 
             </div>
-            <div id="barraMenu">
+            <nav class="barraMenu">
                 <ul>
                     <li><a href="/index.php">Inicio</a></li>
+                    <li>-</li>
+                    <li><a href="/aplicacion/pruebas/index.php">Acceso pruebas</a></li>
+                    <li>-</li>
+                    <li><a href="/aplicacion/relacion1/index.php">Relacion 1</a></li>
                  </ul> 
                 
+            </nav>
+            <div id="barraUbicacion">
+                <?php
+                if($ubicacion)
+                {
+                    
+                    foreach ($ubicacion as $elem) 
+                    {
+                        if(isset($elem["ENLACE"]))
+                        {
+                            echo "<a &nbsp;&nbsp; href='{$elem["ENLACE"]}' >";
+                            
+                        } 
+                        
+                        echo $elem["TEXTO"];
+
+                        if(isset($elem["ENLACE"]))
+                        {
+                            echo "</a>";
+                        }
+
+                        if(isset($elem["ADICIONAL"]))
+                            echo $elem["ADICIONAL"];
+                        else
+                            echo "&nbsp;&nbsp;";
+                    }
+                }
+
+                ?>
             </div>
-            
+
             <div>
 <?php   
 }
@@ -83,11 +116,19 @@ function finCuerpo()
             <footer>
                 <hr width="90%"  />  
                 <div>
-                    &copy; Copyright  by Profesor
+                    &copy; Copyright by Juange
+                    <?php
+                    echo " - " . date("d/m/Y H:i:s"); 
+                    ?>
                 </div>
             </footer>
         </div>
     </body>
 </html>
 <?php
+}
+
+// Barra de navegación
+function historial() {
+    echo $_SERVER['HTTP_REFERER'];
 }
