@@ -44,6 +44,8 @@ function cuerpo() {
             <li><a href="ejercicio4.php">Act4.TrianguloNum</a></li>
             <li>-</li>
             <li><a href="ejercicio5.php">Act5.ArrayVector</a></li>
+            <li>-</li>
+            <li><a href="ejercicio6.php">Act6.MostrarArrayConForeach</a></li>
         </ul>
     </nav>
 <?php
