@@ -58,3 +58,7 @@ function mostrarArrayIndiceValor(array $vector) {
         echo "(key) {$i} => (value) {$valor} <br>";
     }
 }
+
+function mostrarArrayFunciones(array $vector) {
+    
+}
