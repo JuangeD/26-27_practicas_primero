@@ -49,16 +49,24 @@ function cuerpo(array $vector) {
         <!-- HTML -->
     <?php
     mostrarArrayIndiceValor($vector);
+    echo "<hr>";
+    mostrarArrayFunciones($vector);
 }
 
 //Funciones
 function mostrarArrayIndiceValor(array $vector) {
     
     foreach($vector as $i => $valor) {
-        echo "(key) {$i} => (value) {$valor} <br>";
+        echo "(key) {$i} => (value) {$valor} <br>".PHP_EOL;
     }
 }
 
 function mostrarArrayFunciones(array $vector) {
-    
+    $posicion = array_keys($vector);
+    $valor = array_values($vector);
+
+    for ($i=0; $i < count($posicion) ; $i++) { 
+        echo "(key) {$posicion[$i]} => (value) {$valor[$i]} <br>".PHP_EOL;
+    }
+
 }
