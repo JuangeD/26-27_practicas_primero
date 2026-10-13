@@ -28,9 +28,7 @@ function cabecera() {}
 function cuerpo()
 {
 ?>
-    <br><br>
-    Elemento de pruebas
-    <br><br>
+    <h2>EJEMPLOS DE CLASE</h2>
 
     <nav class="barraMenu">
         <ul>
@@ -39,6 +37,8 @@ function cuerpo()
             <li><a href="pasopara.php">Comunicación controlador-vista</a></li>
             <li>-</li>
             <li><a href="arrays.php">Arrays</a></li>
+            <li>-</li>
+            <li><a href="cadenas.php">Cadenas</a></li>
         </ul>
     </nav>
     
