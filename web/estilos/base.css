@@ -50,12 +50,11 @@ footer div {
     background-color: #14e737;
     padding: 5px;
 }
-#cabecera #logo{
+header #logo{
     width: 75px;
     height: 50px;
 }
-
-#cabecera #titulo{
+header #titulo{
     font-size: 1.3em;
     font-style: italic;
 }
@@ -109,7 +108,9 @@ footer div {
 }
 
 .tabla tr.impar{
-    
+     background-color: rgb(201, 231, 245);
+    color: black;
+   
 }
 
 #pie{

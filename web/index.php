@@ -12,7 +12,7 @@ $barra=[
 ];
 
 //dibuja la plantilla de la vista
-inicioCabecera("APLICACION PRIMER TRIMESTRE");
+inicioCabecera("Mi aplicacion");
 cabecera();
 finCabecera();
 inicioCuerpo("2DAW APLICACION INDEX", $barra);
