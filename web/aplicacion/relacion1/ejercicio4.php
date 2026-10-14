@@ -46,9 +46,9 @@ function cuerpo(array $array1, array $array2) {
     <?php
 
     // Mostrar por pantalla el primer array
-    echo "<br>Primer array:<br>";
+    echo "<br>Primer array:<br>".PHP_EOL;
     mostrarArray($array1);
-    echo "<br>Segundo array:<br>";
+    echo "<br>Segundo array:<br>".PHP_EOL;
     mostrarArray($array2);
 }
 
@@ -82,12 +82,12 @@ function generarArrayConParametros(int $num) {
 function mostrarArray(array $array) {
     foreach ($array as $elem => $val) {
         if(!is_array($val))
-            echo "{$val}<br>";
+            echo "{$val}<br>".PHP_EOL;
         else 
         {
-            echo "elemento {$elem} de tipo Array con valores: <br>";
+            echo "elemento {$elem} de tipo Array con valores: <br>".PHP_EOL;
             foreach ($val as $i => $j) {
-                echo "{$j}<br>";
+                echo "{$j}<br>".PHP_EOL;
             }
         }
     }

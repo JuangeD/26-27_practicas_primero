@@ -57,38 +57,38 @@ function mostarArray(array $dato) {
     foreach ($dato as $elem => $valor) {
         
         $tipo = gettype($valor);
-        echo " posicion {$elem} contenido (tipo) ". $tipo;
+        echo " posicion {$elem} contenido (tipo) ". $tipo.PHP_EOL;
         
         switch (strtolower($tipo)) {
             case 'array':
                 foreach ($valor as $i) {
-                    echo "<br>". $i ."<br>";
+                    echo "<br>". $i ."<br>".PHP_EOL;
                 }
                 break;
             
             case 'integer':
                 
-                echo " con valor {$valor}, en binario ". decbin($valor) ."<br>";
+                echo " con valor {$valor}, en binario ". decbin($valor) ."<br>".PHP_EOL;
                 break;
 
             case 'double':
             case 'float':
                 
-                echo " {$valor} que al cuadrado es ". pow($valor, 2) ."<br>";
+                echo " {$valor} que al cuadrado es ". pow($valor, 2) ."<br>".PHP_EOL;
                 break;
 
             case 'string':
                 
-                echo " -{$valor}- <br>";
+                echo " -{$valor}- <br>".PHP_EOL;
                 break;
             
             case 'boolean':
                 
-                echo " ". mostrarBoolean($valor) ." y su opuesto ". mostrarBoolean(!$valor) ."<br>";
+                echo " ". mostrarBoolean($valor) ." y su opuesto ". mostrarBoolean(!$valor) ."<br>".PHP_EOL;
                 break;
 
             default:
-                echo "<br>";    
+                echo "<br>".PHP_EOL;    
 
                 break;
         }

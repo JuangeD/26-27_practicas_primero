@@ -15,9 +15,6 @@ $barra=[
     ]
 ];
 
-
-
-
 //dibuja la plantilla de la vista
 inicioCabecera("Ejercicio 1");
 cabecera();
@@ -61,7 +58,7 @@ function cuerpo()
     echo "REDONDEO DE VARIABLES PARA PROBAR DECHEX Y BASE_CONVERT<br>".PHP_EOL;
     echo "num1={$num1} y num2={$num2} <br>".PHP_EOL;
     echo "dechex: num1=". dechex($num1)." num2=". dechex($num2). "<br>".PHP_EOL; // Prueba de dechex
-    echo "base_convert: 321=". base_convert("321",4,8)." | 21=". base_convert("21",4,8). "<br><br>"; // Prueba de convertir de base 4 a base 8 con base_convert()
+    echo "base_convert: 321=". base_convert("321",4,8)." | 21=". base_convert("21",4,8). "<br><br>".PHP_EOL; // Prueba de convertir de base 4 a base 8 con base_convert()
 
     // PRUEBAS CON NÚMEROS EN BINARIO, OCTAL Y HEXADECIMAL
     $numBinario=0b1010;
@@ -71,5 +68,5 @@ function cuerpo()
     echo "VALORES INCIALES DE LAS VARIABLES<br>".PHP_EOL;
     echo "numBinario=". decbin($numBinario) ." numOctal=". decoct($numOctal) ." numHexa=". dechex($numHexa) ."<br><br>".PHP_EOL;
     echo "VALORES DE LAS VARIABLES EN DECIMAL<br>".PHP_EOL;
-    echo "numBinario=". bindec(strval($numBinario))." numOctal=". octdec(strval($numOctal)). " numHexa=". hexdec(strval($numHexa));
+    echo "numBinario=". bindec(strval($numBinario))." numOctal=". octdec(strval($numOctal)). " numHexa=". hexdec(strval($numHexa)).PHP_EOL;
 }

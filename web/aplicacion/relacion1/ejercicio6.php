@@ -31,7 +31,7 @@ $vector=array(
 inicioCabecera("Ejercicio 6");
 cabecera();
 finCabecera();
-inicioCuerpo("EJERCICIO 6 - MOSTRAR ARRAY USANDO FOREACH", $barra);
+inicioCuerpo("EJERCICIO 6 - MOSTRAR ARRAY SIMULANDO FOREACH", $barra);
 cuerpo($vector);
 finCuerpo();
 
@@ -49,15 +49,17 @@ function cuerpo(array $vector) {
         <!-- HTML -->
     <?php
     mostrarArrayIndiceValor($vector);
-    echo "<hr>";
+    echo "<hr>".PHP_EOL;
     mostrarArrayFunciones($vector);
 }
 
 //Funciones
 function mostrarArrayIndiceValor(array $vector) {
-    
-    foreach($vector as $i => $valor) {
-        echo "(key) {$i} => (value) {$valor} <br>".PHP_EOL;
+
+    reset($vector);
+    while(key($vector) != NULL) {
+        echo "(key) ". key($vector) ." => (value) ". pos($vector) . "<br>".PHP_EOL;
+        next($vector);
     }
 }
 

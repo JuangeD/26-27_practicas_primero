@@ -85,23 +85,23 @@ function cuerpo(array $array1, array $array2, array $array3) {
     <?php
 
     // Mostrar por pantalla el primer array
-    echo "<br>Primer array:<br>";
+    echo "<br>Primer array:<br>".PHP_EOL;
     mostrarArray($array1);
-    echo "<br>Segundo array:<br>";
+    echo "<br>Segundo array:<br>".PHP_EOL;
     mostrarArray($array2);
-    echo "<br>Tercer array:<br>";
+    echo "<br>Tercer array:<br>".PHP_EOL;
     mostrarArray($array3);
 }
 
 function mostrarArray(array $array) {
     foreach ($array as $elem => $val) {
         if(!is_array($val))
-            echo "elemento {$elem} con valor {$val}<br>";
+            echo "elemento {$elem} con valor {$val}<br>".PHP_EOL;
         else 
         {
-            echo "elemento {$elem} de tipo Array con valores: <br>";
+            echo "elemento {$elem} de tipo Array con valores: <br>".PHP_EOL;
             foreach ($val as $i => $j) {
-                echo "&nbsp;&nbsp;&nbsp;&nbsp;elemento {$i} con valor {$j}<br>";
+                echo "&nbsp;&nbsp;&nbsp;&nbsp;elemento {$i} con valor {$j}<br>".PHP_EOL;
             }
         }
     }

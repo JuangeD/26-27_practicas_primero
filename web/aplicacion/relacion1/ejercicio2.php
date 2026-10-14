@@ -46,19 +46,21 @@ function cuerpo(array $lanzamientos, array $resultados) {
         <h1 style="text-align: center;">Lanzamiento de un dado</h1>
     <?php
 
+    echo "lanzamiento del dado 6 veces<br>".PHP_EOL;
     foreach ($lanzamientos as $i => $valor) {
-        echo "lanzamiento ". $i+1 ." del dado: {$valor}<br>";
+        echo "lanzamiento ". $i+1 ." del dado: {$valor}<br>".PHP_EOL;
     }
 
 
 
-    echo "<br>lanzado el dado ". N ." veces<br>";
+    echo "<br>lanzado el dado ". N ." veces<br>".PHP_EOL;
     foreach ($resultados as $clave => $valor) {
         if($valor!=0)
-            echo "el ". $clave+1 ." ha salido {$valor} con un porcentaje de ". calculaPorcentajeLado($valor) ."%<br>";
+            echo "el ". $clave+1 ." ha salido {$valor} con un porcentaje de ". calculaPorcentajeLado($valor) ."%<br>".PHP_EOL;
     }
 }
 
+//*************** FUNCIONES ******************/
 function realizarLanzamientos() {
     $numeros= array_fill(0, 6, 0);
 
