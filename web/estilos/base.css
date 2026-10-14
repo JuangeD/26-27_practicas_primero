@@ -1,17 +1,53 @@
 @charset "UTF8";
 
 body {
-    background-color: rgb(0, 255, 170);
+    background-color: rgb(33, 148, 255);
     font-size: 16px;
 }
 
+footer {
+    text-align: center;
+}
+
+footer div {
+    padding: 1%;
+}
+
+/**** clases ****/
+.barraMenu {
+    text-align: center;
+    gap: 10px;
+}
+
+.barraMenu ul li{
+    display: inline;
+    list-style: none;
+}
+
+.barraMenu ul li a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.barraMenu ul li a:hover {
+    border-bottom: 1px solid #000000;
+}
+
+/**** id's ****/
 #documento{
     margin: 0 auto;
-    background-color: #80ffce;
-    width: 90%;
+    background-color: #fdfdfd;
+    width: 700px;
+    border-radius: 0.5rem;
 }
-header{
-    background-color: #14e734;
+
+#titulo {
+    margin: 1%;
+    text-align: center;
+}
+
+#cabecera{
+    background-color: #14e737;
     padding: 5px;
 }
 header #logo{
@@ -23,53 +59,9 @@ header #titulo{
     font-style: italic;
 }
 
-#barraUbicacion{
-    background-color: #14b2e7;
-    color:white;
-    padding: 5px;
-}
-
-#barraUbicacion a:link,#barraUbicacion a:visited{
-    text-decoration: none;
-    background-color: #14b2e7;
-    color:white;
-
-}
-#barraUbicacion a:hover{
-    background-color: white;
-    color:#14b2e7;
-}
-
-#barraMenu {
-    padding: 8px 20px;
-    background-color: #3b5a4e;
-    border: 5 solid #0d0e0d;
-    border-radius:5px;
-}
-
-#barraMenu a,
-#barraMenu span {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-#barraMenu a:link,#barraMenu a:visited {
-    text-decoration: none;
-}
-
-#barraMenu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 16px;
-    padding: 0;
-}
-
-footer {
-   background-color: #14e78f;
-    padding: 5px;
-
+#barraUbicacion {
+    background-color: #adefff;
+    color: #000000;
 }
 
 .boton{

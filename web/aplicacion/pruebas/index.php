@@ -1,16 +1,17 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-
 $barra=[
-     [
-       "TEXTO"=> "inicio",
-       "ENLACE" =>"/index.php",
-     ],
-       [ 
-       "TEXTO"=> "pruebas"   
-     ],  
+    [
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
+    ],
+    [
+        "TEXTO"=>"pruebas"
+    ]
 ];
+
+
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
@@ -27,12 +28,19 @@ function cabecera() {}
 function cuerpo()
 {
 ?>
-    <br><br>
-    Elemento de pruebas
-    <br><br>
-    <a href="basicas.php">Funcionamiento básico</a><br>
-    <a href="pasopar.php">Comunicacion controlador-vista</a><br>
-    <a href="array.php">Array</a><br>
-    <a href="cadenas.php">Cadenas</a><br>
+    <h2>EJEMPLOS DE CLASE</h2>
+
+    <nav class="barraMenu">
+        <ul>
+            <li><a href="basicas.php">Funcionamiento básico</a></li>
+            <li>-</li>
+            <li><a href="pasopara.php">Comunicación controlador-vista</a></li>
+            <li>-</li>
+            <li><a href="arrays.php">Arrays</a></li>
+            <li>-</li>
+            <li><a href="cadenas.php">Cadenas</a></li>
+        </ul>
+    </nav>
+    
 <?php
 }

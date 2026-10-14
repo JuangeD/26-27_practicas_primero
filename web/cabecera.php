@@ -1,9 +1,6 @@
 <?php 
 
-error_reporting(0); 
-
-date_default_timezone_set('Europe/Berlin');
-        
+date_default_timezone_set('Europe/Madrid'); // Configurar la zona horaria
 
 define("RUTABASE", dirname(__FILE__));
 //define("MODO_TRABAJO","produccion"); //en "produccion o en desarrollo

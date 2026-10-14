@@ -1,58 +1,55 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-//_____________________
-//____ Controlador ____
 
-// Barra de ubicación
-
-/**
- * Cada elemento es un array de dos posiciones asociativas
- * TEXTO: testo a mostrar en el elemento
- * LINK: Enlace a la pagina. Si esta vaciono tiene enlace
- */
-$barraUbi = [
+//CONTROLADOR
+$barra=[
     [
-        "TEXTO"=>"Inicio",
-        "LINK" =>"/index.php"
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
     ],
     [
-        "TEXTO"=>"Relacion 1",
-        "LINK" =>""
+        "TEXTO"=>"relacion1"
     ]
 ];
 
-//dibuja la plantilla de vista
-inicioCabecera("RELACIÓN 1");
+
+//*****************************
+//DIBUJAR PLANTILLA VISTA
+inicioCabecera("Relación 1");
 cabecera();
 finCabecera();
-
-inicioCuerpo("RELACIÓN 1",$barraUbi);
-
-
-
-
-cuerpo(); // llamo a la vista
+inicioCuerpo("RELACIÓN 1", $barra);
+cuerpo();
 finCuerpo();
+//*****************************
 
-// **********************************************************
-
-// vista
-function cabecera() {}
-
-//vista
-function cuerpo()
-{
+//VISTA
+function cabecera() {
 ?>
-    <ul>
-        <li><a href="ejercicio1.php">Ejercicio 1</a></li>
-        <li><a href="ejercicio2.php">Ejercicio 2</a></li>
-        <li><a href="ejercicio3.php">Ejercicio 3</a></li>
-        <li><a href="ejercicio4.php">Ejercicio 4</a></li>
-        <li><a href="ejercicio5.php">Ejercicio 5</a></li>
-        <li><a href="ejercicio6.php">Ejercicio 6</a></li>
-        <li><a href="ejercicio7.php">Ejercicio 7</a></li>
-    </ul>
     
 <?php
-
 }
+
+function cuerpo() {
+?>
+    <h2>Ejercicios</h2>
+    <nav class="barraMenu">
+        <ul>
+            <li><a href="ejercicio1.php">Act1.Librería Math</a></li>
+            <li>-</li>
+            <li><a href="ejercicio2.php">Act2.Lanzar dado</a></li>
+            <li>-</li>
+            <li><a href="ejercicio3.php">Act3.Arrays</a></li>
+            <li>-</li>
+            <li><a href="ejercicio4.php">Act4.TrianguloNum</a></li>
+            <li>-</li>
+            <li><a href="ejercicio5.php">Act5.ArrayVector</a></li>
+            <li>-</li>
+            <li><a href="ejercicio6.php">Act6.MostrarArrayConForeach</a></li>
+            <li>-</li>
+            <li><a href="ejercicio7.php">Act7.ManejoDeFechas</a></li>
+        </ul>
+    </nav>
+<?php
+}
+

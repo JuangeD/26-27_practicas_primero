@@ -1,104 +1,94 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-//_____________________
-//____ Controlador ____
 
-/*
-4- Generar un array con los siguientes valores mostrándolos posteriormente con foreach. El array se
-debe generar usando bucles for.
-        1
-        2 2
-        3 3 3
-        4 4 4 4
-        5 5 5 5 5
-Declarar la constante FILAS que se rellenará con el número de filas que se deben crear. Repetir
-lo anterior usando FILAS para crear el array y visualizarlo.
-
-Los datos se definirán en el controlador y se visualizarán en la vista. */
-
-$barraUbi = [
+// Controlador
+$barra=[
     [
-        "TEXTO"=>"Inicio",
-        "LINK" =>"/index.php"
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
     ],
     [
-        "TEXTO"=>"Relacion 1",
-        "LINK" =>"/aplicacion/relacion1/index.php"
+        "TEXTO"=>"relacion1",
+        "ENLACE"=>"/aplicacion/relacion1/index.php"
     ],
     [
-        "TEXTO"=>"Ejercicio 4",
-        "LINK" =>""
+        "TEXTO"=>"act. 4"
     ]
 ];
-const FILAS = 12;
+
+//Constantes
+const FILAS=9;
+
+$array1=generarArraySinParametros();
+$array2=generarArrayConParametros(FILAS);
 
 
-//genero el array usando un valor
-$array1 = array();
-for ($fil = 1; $fil <= 5; $fil++) {
-    for ($col = 1; $col <= $fil; $col++) {
-        $array1[$fil][$col] = $fil;
-    }
-    
-}
-
-
-//genero el array usando la constante
-$array2 = array();
-for ($fil = 1; $fil <= FILAS; $fil++) {
-    for ($col = 1; $col <= $fil; $col++) {
-        $array2[$fil][$col] = $fil;
-    }
-    
-}
-
-$datos=[
-    "a1"=> $array1,
-    "a2"=> $array2
-];
-
-//______________________________________________________________________
-
-//dibuja la plantilla de vista
+// Dibujo la plantilla de la vista
 inicioCabecera("Ejercicio 4");
 cabecera();
 finCabecera();
-
-inicioCuerpo("Ejercicio 4",$barraUbi);
-
-cuerpo($datos); // llamo a la vista
+inicioCuerpo("EJERCICIO 4 - TRIÁNGULO NUMÉRICO", $barra);
+cuerpo($array1, $array2);
 finCuerpo();
 
-// **********************************************************
+//*********************************************************
 
-// vista
-function cabecera() {}
+// Vista
+function cabecera() {
+    ?>
+    <!-- HEAD -->
+    <?php
+}
 
-//vista
-function cuerpo(array $datos)
-{
-?>
-    <h2>Ejercicio de bucles</h2>
+function cuerpo(array $array1, array $array2) {
+    ?>
+        <!-- HTML -->
+    <?php
 
-<?php
-    //recorro el array
+    // Mostrar por pantalla el primer array
+    echo "<br>Primer array:<br>".PHP_EOL;
+    mostrarArray($array1);
+    echo "<br>Segundo array:<br>".PHP_EOL;
+    mostrarArray($array2);
+}
+
+//Funciones
+function generarArraySinParametros() {
     
-    echo "<h3>Recorro básico</h3>".PHP_EOL;
-    foreach ($datos["a1"] as $fila)
-         {
-           foreach($fila as $valor) {
-                echo $valor. " ";
+    $array=array_fill(0,5,"");
+
+    for ($i=1; $i <= 5; $i++) { 
+        for($j=0; $j<$i; $j++) {
+            $array[$i-1].= strval($i) . " ";
         }
-        echo "<br>".PHP_EOL;
     }
-    
-    echo "<h3>Recorro con constante FILAS</h3>".PHP_EOL;
 
-    for ($fil = 1; $fil <= FILAS; $fil++) {
-        for ($col = 1; $col <= $fil; $col++) {
-            echo $datos["a2"][$fil][$col]. " ";
-        }
-        echo "<br>".PHP_EOL;
-    }
+    return $array;
+}
+
+function generarArrayConParametros(int $num) {
     
+    $array=array_fill(0,$num,"");
+
+    for ($i=1; $i <= $num; $i++) { 
+        for($j=0; $j<$i; $j++) {
+            $array[$i-1].= strval($i) . " ";
+        }
+    }
+
+    return $array;
+}
+
+function mostrarArray(array $array) {
+    foreach ($array as $elem => $val) {
+        if(!is_array($val))
+            echo "{$val}<br>".PHP_EOL;
+        else 
+        {
+            echo "elemento {$elem} de tipo Array con valores: <br>".PHP_EOL;
+            foreach ($val as $i => $j) {
+                echo "{$j}<br>".PHP_EOL;
+            }
+        }
+    }
 }

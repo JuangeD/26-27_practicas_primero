@@ -1,80 +1,74 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include_once(dirname(__FILE__) . "/../../cabecera.php");
-//_____________________
-//____ Controlador ____
-$barraUbi = [
+
+// Controlador
+$barra=[
     [
-        "TEXTO"=>"Inicio",
-        "LINK" =>"/index.php"
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
     ],
     [
-        "TEXTO"=>"Relacion 1",
-        "LINK" =>"/aplicacion/relacion1/index.php"
+        "TEXTO"=>"relacion1",
+        "ENLACE"=>"/aplicacion/relacion1/index.php"
     ],
     [
-        "TEXTO"=>"Ejercicio 6",
-        "LINK" =>""
+        "TEXTO"=>"act. 6"
     ]
 ];
-/* 6.- Con el array $vector=array("primera" =>12.56, 24=>true, 67 =>23.76);
-    - Simular el funcionamiento de foreach ($array as $indice => $valor) usando las funciones de
-    recorrido para mostrar tanto los índices como los valores del array anterior.
 
-    - Simular el funcionamiento de foreach usando las funciones array_keys y array_values para
-    mostrar tanto los índices como los valores del array anterior.
+//Definición del array vector
+$vector=array(
 
-    El array se definirá en el controlador y se realizarán las operaciones en la vista.
-*/
+    "primera" =>12.56, 
+    24=>true, 
+    67 =>23.76
+);
 
-$vector = array("primera" => 12.56, 24 => true, 67 => 23.76);
-
-//______________________________________________________________________
-
-//dibuja la plantilla de vista
+// Dibujo la plantilla de la vista
 inicioCabecera("Ejercicio 6");
 cabecera();
 finCabecera();
-
-inicioCuerpo("Ejercicio 6",$barraUbi);
-cuerpo($vector); // llamo a la vista
+inicioCuerpo("EJERCICIO 6 - MOSTRAR ARRAY SIMULANDO FOREACH", $barra);
+cuerpo($vector);
 finCuerpo();
 
-// **********************************************************
+//*********************************************************
 
-// vista
-function cabecera() {}
+// Vista
+function cabecera() {
+    ?>
+    <!-- HEAD -->
+    <?php
+}
 
-//vista
-function cuerpo(array $vector)
-{
-?>
-    <h2>Ejercicio 6</h2>
+function cuerpo(array $vector) {
+    ?>
+        <!-- HTML -->
+    <?php
+    mostrarArrayIndiceValor($vector);
+    echo "<hr>".PHP_EOL;
+    mostrarArrayFunciones($vector);
+}
 
-<?php
-    echo "<br>";
+//Funciones
+function mostrarArrayIndiceValor(array $vector) {
 
-    
-    echo "<h3>Recorrido usando funciones de cursor</h3>";
-    //pongo el puntero a la primera posicion
     reset($vector);
-    while(key($vector) != NULL) 
-        {
-            //obtener clave y valor
-            echo "Posición: " . key($vector) . " -> " . current($vector)."<br>";
-            //incrementar posicion
-            next($vector);
-        }
+    while(key($vector) != NULL) {
+        echo "(key) ". key($vector) ." => (value) ". pos($vector) . "<br>".PHP_EOL;
+        next($vector);
+    }
+}
 
-   
-    echo "<h3>Usando array_keys y array_values</h3>".PHP_EOL;
-    
-    $claves=array_keys($vector);
-    $valores=array_values($vector);
+function mostrarArrayFunciones(array $vector) {
+    $posicion = array_keys($vector);
+    $valor = array_values($vector);
 
-    for ($cont=0;$cont<count ($claves);$cont++)
-    {
-        echo "Posición:  $claves[$cont] -> {$valores[$cont]} <br>".PHP_EOL;
-        
+    for ($i=0; $i < count($posicion) ; $i++) { 
+        echo "(key) {$posicion[$i]} => (value) {$valor[$i]} <br>".PHP_EOL;
     }
 
 }

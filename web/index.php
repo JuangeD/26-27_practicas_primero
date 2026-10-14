@@ -2,24 +2,20 @@
 include_once(dirname(__FILE__) . "/cabecera.php");
 //controlador
 $barra=[
-     [
-       "TEXTO"=> "inicio",
-       "ENLACE" =>"/index.php",
-       "ADICIONAL"=>">>"],
-     [ 
-       "TEXTO"=> "otro"   
-     ],  
-     [ 
-       "TEXTO"=> "index",
-       "ADICIONAL"=> "&copy;&copy;"   
-     ]
+    [
+        "TEXTO"=>"inicio",
+        "ENLACE"=>"/index.php"
+    ],
+    [
+        "TEXTO"=>"index"
+    ]
 ];
 
 //dibuja la plantilla de la vista
 inicioCabecera("Mi aplicacion");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION INDEX",$barra);
+inicioCuerpo("2DAW APLICACION INDEX", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -28,10 +24,8 @@ finCuerpo();
 function cabecera() 
 {
     ?>
-    <!-- esto va en el head -->
-     <?php   
-
-
+    <!--Esto va en el head-->
+    <?php
 }
 
 //vista
@@ -39,6 +33,12 @@ function cuerpo()
 {
 ?>
     <br><br>
-   <a href="./aplicacion/pruebas/index.php">Acceso a pruebas</a>
+
+    <p>Esta es una web contiene todos los ejemplos copiados en clase
+        y todas las relaciones de ejercicios.
+    </p>
 <?php
 }
+
+// Comentario en la rama dev
+// Otro comentario en la rama dev
