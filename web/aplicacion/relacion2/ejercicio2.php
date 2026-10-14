@@ -22,7 +22,7 @@ $barra=[
 inicioCabecera("Ejercicio 2");
 cabecera();
 finCabecera();
-inicioCuerpo("EJERCICIO 2 - CADENAS", $barra);
+inicioCuerpo("EJERCICIO 2 - MOSTRAR CARACTERES SEPARADOS", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************
@@ -41,5 +41,14 @@ function cuerpo()
 ?>
     <!-- HTML -->
 <?php
+    mostrarCadena(); 
+}
 
+// FUNCIONES************************
+function mostrarCadena() {
+    $cadena = "Está la niña en casa";
+
+    for ($i=0; $i < ; $i++) { 
+        # code...
+    }
 }
