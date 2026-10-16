@@ -41,14 +41,26 @@ function cuerpo()
 ?>
     <!-- HTML -->
 <?php
-    mostrarCadena(); 
+    mostrarCadena();
 }
 
 // FUNCIONES************************
 function mostrarCadena() {
     $cadena = "Está la niña en casa";
 
-    for ($i=0; $i < ; $i++) { 
-        # code...
+    // Mostrando la cadena con []
+    for ($i=0; $i < strlen($cadena); $i++) { 
+        echo str_repeat("&nbsp;",$i)."$cadena[$i]<br>";
     }
+
+    // Mostrando la cadena con substr
+    for($i=0; $i < strlen($cadena); $i++) {
+        echo str_repeat("&nbsp;",$i).substr($cadena,$i, 1)."<br>";
+    }
+
+    // Mostrando la cadena con mb_substr
+    for($i=0; $i < mb_strlen($cadena); $i++) {
+        echo str_repeat("&nbsp;",$i).mb_substr($cadena, $i, 1)."<br>";
+    }
+
 }
