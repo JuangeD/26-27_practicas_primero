@@ -45,8 +45,14 @@ function cuerpo()
 }
 
 // FUNCIONES************************
+/**
+ * 
+ * Función que mustra la cadena "Está la niña en casa"
+ * de distintas maneras
+ * @return void
+ */
 function mostrarCadena() {
-    $cadena = "Está la niña en casa";
+    $cadena = "Está la niña en casa"; // Almaceno la cadena en una variable
 
     // Mostrando la cadena con []
     for ($i=0; $i < strlen($cadena); $i++) { 
