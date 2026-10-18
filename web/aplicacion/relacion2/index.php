@@ -38,6 +38,12 @@ function cuerpo() {
             <li><a href="ejercicio1.php">Act1.EscrituraCadenas</a></li>
             <li>-</li>
             <li><a href="ejercicio2.php">Act2.MostrarCadenaSeparada</a></li>
+            <li>-</li>
+            <li><a href="ejercicio3.php">Act3.GenerarCadenaAleatoria</a></li>
+            <li>-</li>
+            <li><a href="ejercicio4.php">Act4.MostrarVariablesDeXForma</a></li>
+            <li>-</li>
+            <li><a href="ejercicio5.php">Act5.ExpresionesRegulares</a></li>
         </ul>
     </nav>
 <?php
