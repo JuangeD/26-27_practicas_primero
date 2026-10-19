@@ -37,7 +37,7 @@ function cabecera()
 }
 
 //vista
-function cuerpo($bas, $ot)
+function cuerpo(array $bas, string $ot)
 {
 ?>
     <br><br>
