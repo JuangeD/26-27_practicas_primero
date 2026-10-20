@@ -75,20 +75,20 @@ function localizarElementosUsandoExpresionesRegulares() {
     terminado el texto aleatorio 34545
     fin;
 
-    $etiqueta = '/<\/?.+>/'; // Expresión regular para buscar las etiquetas
-    $numero = '/[[:digit:]]+\..+?/'; // Expresión regular para buscar los números
-    $correo = '/\s[[:alpha:]]{4}@[[:alpha:]]{4}\.[[:alpha:]]{2}\s/'; // Expresión regular para buscar los correos
+    $etiqueta = '/<\.+?>/'; // Expresión regular para buscar las etiquetas // Corrección
+    $numero = '/[[:digit:]]+(\.\d+)?/'; // Expresión regular para buscar los números // Correción
+    $correo = '/\s[[:alpha:]]@[[:alpha:]]+\.[[:alpha:]]{2,6}\s/'; // Expresión regular para buscar los correos
 
     $etiquetasEncontradas = [];
     $numerosEncontrados = [];
     $correosEncontrados = [];
 
-    preg_match($etiqueta, $cadena, $etiquetasEncontradas, PREG_OFFSET_CAPTURE);
-    preg_match($numero, $cadena, $numerosEncontrados, PREG_OFFSET_CAPTURE);
-    preg_match($correo, $cadena, $correosEncontrados, PREG_OFFSET_CAPTURE);
+    preg_match_all($etiqueta, $cadena, $etiquetasEncontradas, PREG_OFFSET_CAPTURE);
+    preg_match_all($numero, $cadena, $numerosEncontrados, PREG_OFFSET_CAPTURE);
+    preg_match_all($correo, $cadena, $correosEncontrados, PREG_OFFSET_CAPTURE);
 
-    for ($i=0; $i < count($etiquetasEncontradas); $i++) { 
-        echo $etiquetasEncontradas[$i][1]."/".htmlspecialchars($etiquetasEncontradas[$i][0])."<br>".PHP_EOL;
+    foreach ($etiquetasEncontradas[0] as $etiqueta) { 
+        echo $etiqueta[1]."/".htmlspecialchars($etiqueta[0])."<br>".PHP_EOL;
     }
 
     for ($i=0; $i < count($numerosEncontrados); $i++) { 

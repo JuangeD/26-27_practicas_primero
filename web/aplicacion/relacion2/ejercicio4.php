@@ -49,5 +49,8 @@ function cuerpo(float $var1, float $var2)
     $str2Rellena = str_pad($str2, 15, " ", STR_PAD_LEFT); // Relleno con " " a la izquierda hasta completar el string con 15 caracteres
     // Lo único es que el HTML machaca los espacios anteriormente añadidos y solo muestra 1 en vez de los 11 añadidos
 
-    echo "el primer valor -{$str1Rellena}-, el segundo valor -{$str2Rellena}-";
+    // Corrección del ejercicio 4, se deben visualizar los espacios en el HTML
+    $str2Rellenav2 = str_repeat('&nbsp;', 15-mb_strlen($str2)) . $str2;
+
+    echo "el primer valor -{$str1Rellena}-, el segundo valor -{$str2Rellenav2}-";
 }
