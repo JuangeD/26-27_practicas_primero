@@ -31,6 +31,10 @@ if(($numero=doble($numero))===false)
         exit;
     }
 
+$r=[3,4,5,6,7,8,9,10];
+$numero=suma1(1,2,...$r);
+
+$numero=suma1(...$r);
 
 //dibuja la plantilla de la vista
 inicioCabecera("FUNCIONES");

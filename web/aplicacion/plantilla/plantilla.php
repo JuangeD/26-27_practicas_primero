@@ -108,7 +108,7 @@ function inicioCuerpo(string $cabecera, array $ubicacion=[])
                 ?>
             </div>
 
-            <div>
+            <div id="principal">
 <?php   
 }
 

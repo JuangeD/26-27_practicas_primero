@@ -1,17 +1,17 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 //controlador
-$barra=[
+$barra = [
     [
-        "TEXTO"=>"inicio",
-        "ENLACE"=>"/index.php"
+        "TEXTO" => "inicio",
+        "ENLACE" => "/index.php"
     ],
     [
-        "TEXTO"=>"relacion2",
-        "ENLACE"=>"/aplicacion/relacion2/index.php"
+        "TEXTO" => "relacion2",
+        "ENLACE" => "/aplicacion/relacion2/index.php"
     ],
     [
-        "TEXTO"=>"act. 5"
+        "TEXTO" => "act. 5"
     ]
 ];
 
@@ -27,11 +27,11 @@ finCuerpo();
 // **********************************************************
 
 //vista
-function cabecera() 
+function cabecera()
 {
-    ?>
+?>
     <!--Esto va en el head-->
-    <?php
+<?php
 }
 
 //vista
@@ -50,7 +50,8 @@ function cuerpo()
  * regulares definidas
  * @return void
  */
-function localizarElementosUsandoExpresionesRegulares() {
+function localizarElementosUsandoExpresionesRegulares()
+{
 
     // Creo la cadena de texto aleatorio
     $cadena = <<<fin
@@ -75,27 +76,45 @@ function localizarElementosUsandoExpresionesRegulares() {
     terminado el texto aleatorio 34545
     fin;
 
-    $etiqueta = '/<\.+?>/'; // Expresión regular para buscar las etiquetas // Corrección
-    $numero = '/[[:digit:]]+(\.\d+)?/'; // Expresión regular para buscar los números // Correción
-    $correo = '/\s[[:alpha:]]@[[:alpha:]]+\.[[:alpha:]]{2,6}\s/'; // Expresión regular para buscar los correos
+    $etiqueta = "/<.+?>/"; // Expresión regular para buscar las etiquetas // Corrección
+    $numero = "/\d+(\.\d+)?/"; // Expresión regular para buscar los números // Correción
+    $correo = "/[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}/"; // Expresión regular para buscar los correos
 
-    $etiquetasEncontradas = [];
-    $numerosEncontrados = [];
-    $correosEncontrados = [];
+    $etiquetas = [];
+    $numeros = [];
+    $emails = [];
 
-    preg_match_all($etiqueta, $cadena, $etiquetasEncontradas, PREG_OFFSET_CAPTURE);
-    preg_match_all($numero, $cadena, $numerosEncontrados, PREG_OFFSET_CAPTURE);
-    preg_match_all($correo, $cadena, $correosEncontrados, PREG_OFFSET_CAPTURE);
+    preg_match_all($etiqueta, $cadena, $etiquetas, PREG_OFFSET_CAPTURE);
+    preg_match_all($numero, $cadena, $numeros, PREG_OFFSET_CAPTURE);
+    preg_match_all($correo, $cadena, $emails, PREG_OFFSET_CAPTURE);
+?>
 
-    foreach ($etiquetasEncontradas[0] as $etiqueta) { 
-        echo $etiqueta[1]."/".htmlspecialchars($etiqueta[0])."<br>".PHP_EOL;
-    }
+    <h2>Texto original:</h2>
+    <pre><?= htmlspecialchars($cadena) ?></pre>
 
-    for ($i=0; $i < count($numerosEncontrados); $i++) { 
-        echo $numerosEncontrados[$i][1]."/".$numerosEncontrados[$i][0]."<br>".PHP_EOL;
-    }
+    <h2>Etiquetas encontradas:</h2>
+    <ul>
+        <?php
+        foreach ($etiquetas[0] as $etiqueta) {
+            echo "<li>Posición {$etiqueta[1]}:" . htmlspecialchars($etiqueta[0]) . "</li>" . PHP_EOL;
+        } ?>
+    </ul>
 
-    for ($i=0; $i < count($correosEncontrados); $i++) { 
-        echo $correosEncontrados[$i][1]."/".$correosEncontrados[$i][0]."<br>".PHP_EOL;
-    }
+    <h2>Números encontrados:</h2>
+    <ul>
+        <?php
+        foreach ($numeros[0] as $numero) {
+            echo "<li>Posición $numero[1] : $numero[0] </li>" . PHP_EOL;
+        } ?>
+    </ul>
+
+    <h2>Emails encontrados:</h2>
+    <ul>
+        <?php
+        foreach ($emails[0] as $email) {
+            echo "<li>Posición $email[1] : $email[0]</li> " . PHP_EOL;
+        }
+        ?>
+    </ul>
+<?php
 }
