@@ -28,27 +28,81 @@ function cuentaVeces(array &$array, string $posicion, int $num1, int &$num2): bo
     return true; // Devuelvo true al final para indicar que todo se ha ejecutado correctamente
 }
 
+/**
+ * Función que genera un cadena según una
+ * longitud indicada. Si no se le indica, el
+ * valor por defecto es 10
+ *
+ * @param integer $longitud número de caracteres de la cadena
+ * @return boolean|string devuelve false si el número de caracteres es negativo. Si no hay errores devuelve la cadena
+ */
+function generarCadena(int $longitud=10): bool|string 
+{
+    $cadena = ""; // Variable donde se almacenará la cadena
+    $char = ''; // Variable donde se almacenará un carácter generado
 
-function generarCadena(int $longitud=10): bool|string {
-    /* Variables */
-    $cadena = "";
-    $char = '';
-
-    if($longitud<0)
-        return false;
+    if($longitud<0) // Comprobar si la longitud es negativa
+        return false; // Salta error
 
 
-    for($i=0; $i<$longitud; $i++)
+    for($i=0; $i<$longitud; $i++) // Bucle for para generar la cadena según la longitud indicada
     {
         do 
         {
-            $char = chr(rand(48,122));
+            $char = chr(rand(48,122)); // Generar un carácter aleatorio de la tabla ASCII
 
-        } while(!ctype_alnum($char));
+        } while(!ctype_alnum($char)); // Generar dicho carácter mientras que no sea un alfanumérico
 
-        $cadena.=$char;
+        $cadena.=$char; // Una vez sea un alfanumérico, se concatena a la variable de la cadena
     }
 
-    return $cadena;
+    return $cadena; // Devuelvo la cadena
     
+}
+
+function operaciones(int $operacion, float ...$operandos): float 
+{
+
+    $resultado = 0;
+
+    switch($operacion)
+    {
+        case 1:
+            foreach($operandos as $num)
+            {
+                $resultado+=$num; // Voy sumando cada uno de los operandos al valor de $resultado
+            }
+            break; // Salgo del switch
+        case 2:
+            $primero=$operandos[0]; // Almaceno el primer operando en una variable
+            $restoNum=0; // Creo e inicializo una variable para el resto de operandos
+            for($i=1;$i<count($operandos);$i++)
+            {
+                $restoNum+=$operandos[$i];
+            }
+            $resultado=$primero-$restoNum;
+            break;
+        case 3:
+            $resultado=1; // Inicializo a 1 el resultado para poder realizar la multiplicación
+            foreach($operandos as $num)
+            {
+                $resultado*=$num;
+            }
+            break;
+        default:
+            $pares=0;
+            $impares=0;
+
+            foreach($operandos as $ind => $val) 
+            {
+                if(($ind%2)===0)
+                    $pares+=$val;
+                else
+                    $impares+=$val;
+            }
+
+            $resultado=$pares-$impares;
+    }
+
+    return $resultado;
 }
