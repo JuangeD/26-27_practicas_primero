@@ -1,6 +1,7 @@
 <?php
 // ***** FUNCIONES *****
 
+/* ====== EJERCICIO 1 ====== */
 /**
  * Función que rellena una posición de un array
  * asociativo con un número. Devolverá un error
@@ -28,6 +29,8 @@ function cuentaVeces(array &$array, string $posicion, int $num1, int &$num2): bo
     return true; // Devuelvo true al final para indicar que todo se ha ejecutado correctamente
 }
 
+
+/* ====== EJERCICIO 2 ====== */
 /**
  * Función que genera un cadena según una
  * longitud indicada. Si no se le indica, el
@@ -60,6 +63,8 @@ function generarCadena(int $longitud=10): bool|string
     
 }
 
+
+/* ====== EJERCICIO 3 ====== */
 /**
  * Función que realiza una operación indicada sobre
  * una serie de argumentos pasados por parámetro. Recibe
@@ -132,6 +137,7 @@ function operaciones(int $operacion, float $op1, float $op2, float ...$operandos
     return $resultado; // Al salir del switch devuelvo resultado
 }
 
+/* ====== EJERCICIO 4 ====== */
 /**
  * Esta función recibe como parámetros tres números (enteros) y devuelve la
  * suma de los tres valores en el primer parámetro y como resultado de la función el producto de los
@@ -143,16 +149,100 @@ function operaciones(int $operacion, float $op1, float $op2, float ...$operandos
  * @param integer $num3 tercer número. El valor por defecto es 10
  * @return int devuelve el producto de los tres parámetros
  */
-function devuelve(int &$var1, ?int $num2=5, ?int $num3=10): int
+function devuelve(int &$var1, int $num2=5, int $num3=10): int
 {
     
 
-    $resultado = 1;
-    foreach(func_get_args() as $arg) // Realización de la multiplicación de los argumentos
-    {
-        $resultado*=$arg;
-    }
+    $resultado = $var1 * $num2 * $num3; // Multiplicación de los parámetros  
 
-    $var1 += $num2 + $num3; // Suma que se devolverá en la variable $num1 pasada como referencia
+    $var1 += $num2 + $num3; // Suma que se devolverá en la variable pasada por referencia
     return $resultado;
+}
+
+/* ====== EJERCICIO 5 ====== */
+
+/**
+ * Función que devuelve la suma de
+ * dos números pasados por parámetro
+ * 
+ * @param int $param1 primer número
+ * @param int $param2 segundo número
+ * @return float devuelve el resultado de la suma de ambos valores
+ */
+function suma(int $param1, int $param2): float 
+{
+    return $param1 + $param2;
+}
+
+/**
+ * Función que devuelve la resta de
+ * dos números pasados por parámetro
+ * 
+ * @param int $param1 primer número
+ * @param int $param2 segundo número
+ * @return float devuelve el resultado de la resta de ambos valores
+ */
+function resta(int $param1, int $param2): float 
+{
+    return $param1 - $param2;
+}
+
+/**
+ * Función que devuelve el producto de
+ * dos números pasados por parámetro
+ * 
+ * @param int $param1 primer número
+ * @param int $param2 segundo número
+ * @return float devuelve el resultado del producto de ambos valores
+ */
+function multiplicacion(int $param1, int $param2): float 
+{
+    return $param1 * $param2;
+}
+
+/**
+ * Función que permite realizar una operación indicada como
+ * string a dos operandos pasados por parámetro.
+ * 
+ * @param string $operacion tipo de operación a realizar. Las operacines válidas son 'suma', 'resta' y 'multiplicacion'
+ * @param int $op1 primer operando
+ * @param int $op2 segundo operando
+ * @return bool|float devuelve false si la operación no está dentro de las válidas. Si la operación indicada es correcta, se devuelve el resultado de la operación indicada
+ */
+function hacerOperacion(string $operacion, int $op1, int $op2): bool|float
+{
+    if(($operacion!=="suma")&&($operacion!=="resta")&&($operacion!=="multiplicacion")) // Compruebo que la función sea correcta 
+        return false; // Devuelvo false en caso de no serlo
+
+    return $operacion($op1,$op2);
+}
+
+/* ====== EJERCICIO 6 ====== */
+/**
+ * Función a la que se le pasan dos números enteros
+ * y una función, bien anónima o ya definida, pasada como
+ * tercer parámetro y la cual se ejecutará con dichos números
+ * 
+ * @param int $param1 primer número
+ * @param int $param2 segundo número
+ * @param callable $funcion función a la que se le pasarán los dos números anteriores
+ * @return int devuelve el resultado de ejecutar la función pasada por parámetro con los números pasados también por parámetro
+ */
+function llamadaAFuncion(int $param1, int $param2, callable $funcion): int
+{
+    return intval($funcion($param1, $param2)); // Parseo el resultado de la función a un entero
+}
+
+/* ====== EJERCICIO 7 ====== */
+
+/**
+ * Función que ordena un array de cadenas de mayor
+ * a menor según el número de caracteres de cada cadena
+ * 
+ * @param array $array array pasado por referencia que se quiere ordenar
+ * @return void devuelve el resultado en el mismo array pasado por parámetro
+ */
+function ordenar(array &$array)
+{
+    usort($array, fn($a,$b)=>strlen($b)-strlen($a));
 }
