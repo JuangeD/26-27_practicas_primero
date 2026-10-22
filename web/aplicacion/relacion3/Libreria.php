@@ -60,30 +60,55 @@ function generarCadena(int $longitud=10): bool|string
     
 }
 
-function operaciones(int $operacion, float ...$operandos): float 
+/**
+ * Función que realiza una operación indicada sobre
+ * una serie de argumentos pasados por parámetro. Recibe
+ * al menos tres parámetros, el tipo de operación y dos operandos
+ * 
+ * Tiene tres operaciones definidas:
+ *  1. suma todos los operandos
+ *  2. al primer operando se restan el resto
+ *  3. multiplicación de todos los operandos.  
+ * 
+ * En cualquier otro caso se suman los operandos que ocupan las posiciones pares y se restan
+ * los de las posiciones impares (el primer operando es 1).
+ *
+ * @param integer $operacion tipo de operación a realizar
+ * @param float $op1 primer operando
+ * @param float $op2 segundo operando
+ * @param float ...$operandos resto de operandos
+ * @return float devuelve un float del resultado de la operación indicada
+ */
+function operaciones(int $operacion, float $op1, float $op2, float ...$operandos): float 
 {
 
-    $resultado = 0;
+    $resultado = 0; // Inicializo resultado a 0
 
     switch($operacion)
     {
         case 1:
+            $resultado=$op1+$op2; // Sumo los tres primeros operandos
             foreach($operandos as $num)
             {
-                $resultado+=$num; // Voy sumando cada uno de los operandos al valor de $resultado
+                $resultado+=$num; // Voy sumando cada uno del resto de los operandos al valor de $resultado
             }
             break; // Salgo del switch
         case 2:
-            $primero=$operandos[0]; // Almaceno el primer operando en una variable
-            $restoNum=0; // Creo e inicializo una variable para el resto de operandos
-            for($i=1;$i<count($operandos);$i++)
+            $primero=$op1; // Almaceno el primer operando en una variable
+            
+            // Creo e inicializo una variable para el resto de operandos
+            /* La inicializo con valor del operando 2 ya que es el primer
+            parámetro que se le pasará al resto de operandos*/
+            $restoNum=$op2;
+            for($i=0;$i<count($operandos);$i++)
             {
                 $restoNum+=$operandos[$i];
             }
             $resultado=$primero-$restoNum;
             break;
         case 3:
-            $resultado=1; // Inicializo a 1 el resultado para poder realizar la multiplicación
+            $resultado=$op1*$op2; // Igualo resultado a la multiplicación de los tres primeros operandos
+
             foreach($operandos as $num)
             {
                 $resultado*=$num;
@@ -93,16 +118,41 @@ function operaciones(int $operacion, float ...$operandos): float
             $pares=0;
             $impares=0;
 
-            foreach($operandos as $ind => $val) 
+            for($i=1;$i<func_num_args();$i++) // Recorro los parámetros a partir del operando 1 para mirar si la posición es par o impar
             {
-                if(($ind%2)===0)
-                    $pares+=$val;
+                if(($i%2)===0) // Si la posición es par se suma el argumento al valor de las posiciones pares
+                    $pares+=func_get_arg($i);
                 else
-                    $impares+=$val;
+                    $impares+=func_get_arg($i); // En cambio si es impar se suma el argumento al valor de las posiciones impares
             }
 
-            $resultado=$pares-$impares;
+            $resultado=$pares-$impares; // Por último se almacena en el resultado de la resta de las posiciones pares menos las impares
     }
 
+    return $resultado; // Al salir del switch devuelvo resultado
+}
+
+/**
+ * Esta función recibe como parámetros tres números (enteros) y devuelve la
+ * suma de los tres valores en el primer parámetro y como resultado de la función el producto de los
+ * tres valores. Los dos últimos parámetros tendrán definidos un valor por defecto,
+ * siendo 5 y 10, respectivamente
+ *
+ * @param integer $var1 variable, donde se devolverá la suma de los tres parámetros
+ * @param integer $num2 segundo número. El valor por defecto es 5
+ * @param integer $num3 tercer número. El valor por defecto es 10
+ * @return int devuelve el producto de los tres parámetros
+ */
+function devuelve(int &$var1, ?int $num2=5, ?int $num3=10): int
+{
+    
+
+    $resultado = 1;
+    foreach(func_get_args() as $arg) // Realización de la multiplicación de los argumentos
+    {
+        $resultado*=$arg;
+    }
+
+    $var1 += $num2 + $num3; // Suma que se devolverá en la variable $num1 pasada como referencia
     return $resultado;
 }
