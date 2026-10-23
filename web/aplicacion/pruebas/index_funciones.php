@@ -31,6 +31,36 @@ if(($numero=doble($numero))===false)
         exit;
     }
 
+$r=[3,4,5,6,7,8,9,10];
+$numero=suma1(1,2,...$r);
+
+$numero=suma1(...$r);
+
+//funciones anonimas
+$func = function (float $a, float $b, float ...$resto): float 
+{
+    $res = 0;
+
+    for($i=0; $i<func_num_args(); $i++) {
+        $res+=func_get_arg($i);
+    }
+
+    return $res;
+};
+
+$numero = $func(1,2,3,4);
+
+//funciones flecha
+$s=function (int $a, int $b)
+{
+    return $a+$b;
+};
+
+$numero=$s(5,20);
+
+$s=fn(int $a, int $b)=>$a+100; //las funciones de flecha están hechas para sentencias rápidas
+
+$numero=$s(29,20);
 
 //dibuja la plantilla de la vista
 inicioCabecera("FUNCIONES");
