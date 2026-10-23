@@ -15,7 +15,7 @@ $barra=[
 inicioCabecera("Mi aplicacion");
 cabecera();
 finCabecera();
-inicioCuerpo("2DAW APLICACION INDEX", $barra);
+inicioCuerpo("2DAW APLICACION", $barra);
 cuerpo();  //llamo a la vista
 finCuerpo();
 // **********************************************************

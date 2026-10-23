@@ -244,5 +244,5 @@ function llamadaAFuncion(int $param1, int $param2, callable $funcion): int
  */
 function ordenar(array &$array)
 {
-    usort($array, fn($a,$b)=>strlen($b)-strlen($a));
+    usort($array, fn($a,$b)=>mb_strlen($b)-mb_strlen($a));
 }
