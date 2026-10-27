@@ -1,8 +1,6 @@
 <?php
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
-include("Libreria.php");
-
 //CONTROLADOR
 $barra=[
     [
