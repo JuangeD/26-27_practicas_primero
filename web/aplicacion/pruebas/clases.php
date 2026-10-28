@@ -38,6 +38,45 @@ $segunda = Unica::crear(300);
 $ins = new Instituto();
 
 
+$clase1 = new Clasenormal();
+$clase2 = new Clasenormal();
+
+//$clase1->cadena="hola"; // Crea en tiempo de ejecución la variable
+
+$cadAux="";
+/* if(isset($clase1->cadena))
+    $cadAux = $clase1->cadena;
+ */
+
+// clase sin sobrecarga
+$clase1 = new ClaseSinSobrecarga();
+/* $clase1->cadena="hola";
+
+if(isset($clase1->cadena))
+    $cadAux = $clase1->cadena;
+ */
+
+// clase con sobrecarga
+$clase1 = new ClaseSobrecargada();
+
+$val=$clase1->moreno;
+$val=$clase1->marcha;
+$val=$clase1->numero;
+/* $val=$clase1->hora; */
+
+// Clase dinamica
+$clase1 = new ClaseDinamica();
+$clase2 = new ClaseDinamica();
+
+$clase1->nombre="Juange";
+$cadena = $clase1->nombre;
+
+$clase1->varPublica=20;
+if(isset($clase2->nombre))
+    $cadena=$clase2->nombre;
+
+unset($clase1->nombre);
+
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
 cabecera();
