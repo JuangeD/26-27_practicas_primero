@@ -3,7 +3,7 @@
 /**
  * Clase de instrumento base
  */
-abstract class InstrumentoBase 
+class InstrumentoBase 
 {
     private string $_descripcion;
     protected int $_edad=10;
@@ -31,8 +31,8 @@ abstract class InstrumentoBase
         $this->_descripcion=$val;
     }
 
-    abstract public function sonido(): string;
-    abstract public function afinar(): string;
+    /* abstract public function sonido(): string;
+    abstract public function afinar(): string; */
 
     /**
      * Función que envejece en un año

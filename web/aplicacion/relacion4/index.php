@@ -34,7 +34,9 @@ function cuerpo() {
 ?>
     
 <?php
+    $instrumentoBase1 = new InstrumentoBase("guitarra", 7);
 
+    echo "Instrumento: ". $instrumentoBase1->getDescripcion();
     
 }
 
