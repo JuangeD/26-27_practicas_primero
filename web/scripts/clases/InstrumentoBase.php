@@ -3,16 +3,20 @@
 /**
  * Clase de instrumento base
  */
-class InstrumentoBase 
+abstract class InstrumentoBase 
 {
     private string $_descripcion;
     protected int $_edad=10;
+    protected int $_numElem;
+    static protected int $_elemCreados;
     
     // Constructor
     public function __construct(string $descripcion, int $edad=10)
     {
         $this->_descripcion = $descripcion;
         $this->_edad = $edad;
+        self::$_elemCreados++;
+        $this->_numElem=self::$_elemCreados;
     }
 
 
@@ -31,8 +35,21 @@ class InstrumentoBase
         $this->_descripcion=$val;
     }
 
-    /* abstract public function sonido(): string;
-    abstract public function afinar(): string; */
+    /**
+     * 
+     * Función abstracta que devuelve una cadena
+     * con el sonido del instrumento
+     * @return string devuelve una cadena del sonido del instrumento
+     */
+    abstract public function sonido(): string;
+
+    /**
+     * 
+     * Función abstracta que devuelve una cadena con las instrucciones
+     * para afinar el instrumento
+     * @return string devuelve una cadena con las instrucciones para afinar el instrumento
+     */
+    abstract public function afinar(): string;
 
     /**
      * Función que envejece en un año
@@ -43,5 +60,10 @@ class InstrumentoBase
     public function envejecer(): void
     {
         $this->_edad++;
+    }
+
+    public function __toString(): string
+    {
+        return "instrumento con descripción $this->_descripcion, instancia $this->_numElem de un total de ". self::$_elemCreados .". Tiene $this->_edad años. La clase es ". get_class($this);
     }
 }
