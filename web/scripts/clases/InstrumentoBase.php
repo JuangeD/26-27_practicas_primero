@@ -8,7 +8,7 @@ abstract class InstrumentoBase
     private string $_descripcion;
     protected int $_edad=10;
     protected int $_numElem;
-    static protected int $_elemCreados;
+    static protected int $_elemCreados=0;
     
     // Constructor
     public function __construct(string $descripcion, int $edad=10)

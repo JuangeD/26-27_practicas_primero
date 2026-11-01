@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Clase Flauta que hereda de InstrumentoViento
+ * y que es una clase final, por lo que otra clase
+ * no puede heredar de esta 
+ */
 final class Flauta extends InstrumentoViento
 {
     private function __construct(string $material="madera", int $edad=15)
@@ -7,20 +12,38 @@ final class Flauta extends InstrumentoViento
         parent::__construct($material, $edad);
     }
 
+    /**
+     * Método estático que crea un objeto Flauta a partir de un array
+     * asociativo con las posiciones "material" y "edad", con sus respectivos
+     * valores.
+     * 
+     * @param array $atributos array asociativo con los valores de la instancia de Flauta
+     * @return Flauta devuelve una instancia de Flauta
+     */
     public static function crearDesdeArray(array $atributos): Flauta
     {
         $obj = null;
 
-        if(isset($atributos["material"]) && isset($atributos["material"]))
-            $obj = new Flauta($atributos["material"], $atributos["edad"]);
-        else
-            $obj = new Flauta();
+        if(!isset($atributos["material"]) && !isset($atributos["edad"]))
+            $obj=new Flauta();
+
+        if(isset($atributos["material"]))
+            $obj = new Flauta($atributos["material"]);
+        
+        if(isset($atributos["edad"]))
+            $obj = new Flauta(edad: $atributos["edad"]);
 
         
         return $obj;
 
     }
 
+    /**
+     * Método que devuelve una copia de la instancia del 
+     * objeto Flauta por el que ha sido llamado el método
+     * 
+     * @return Flauta devuelve un objeto Flauta
+     */
     public function clonacion(): Flauta
     {
         return new Flauta($this->_material, 0);

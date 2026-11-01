@@ -27,13 +27,15 @@ class InstrumentoViento extends InstrumentoBase implements IFabricable
     #[Override]
     public function metodoFabricacion(): string
     {
-        throw new \Exception('Not implemented');
+        return "Se funde o moldea el cuerpo, se taladra el tubo interior 
+        con precisión matemática y se suelda un complejo mecanismo de llaves mecánicas.";
     }
 
     #[Override]
     public function metodoReciclado(): string
     {
-        throw new \Exception('Not implemented');
+        return "Llévalo a un punto limpio municipal o dónalo a una escuela de 
+        música o asociación para que aprovechen sus piezas metálicas.";
     }
 
     /* ====== TOSTRING() ====== */
