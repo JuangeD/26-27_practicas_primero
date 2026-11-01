@@ -3,7 +3,9 @@
 /**
  * Clase Flauta que hereda de InstrumentoViento
  * y que es una clase final, por lo que otra clase
- * no puede heredar de esta 
+ * no puede heredar de esta
+ * 
+ * @author Juan Gerardo Díaz Hurtado
  */
 final class Flauta extends InstrumentoViento
 {

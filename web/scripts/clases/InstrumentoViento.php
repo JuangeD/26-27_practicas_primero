@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Clase InstrumentoViento la cual extiende de
+ * InstrumentoBase e implementa la interfaz IFabricable
+ * 
+ * @author Juan Gerardo Díaz Hurtado
+ */
 class InstrumentoViento extends InstrumentoBase implements IFabricable
 {
     protected string $_material = "madera";
