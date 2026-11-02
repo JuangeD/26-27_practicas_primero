@@ -41,7 +41,7 @@ function cuerpo() {
     /* Creación de instancias */
     $instrumentoViento1 = new InstrumentoViento();
     $flauta1 = Flauta::crearDesdeArray(["material"=>"metal"]);
-    $flauta2 = $flauta1->clonacion();
+    $flauta2 = clone $flauta1;
 
 
     /* Prueba ejercicio 3 */
@@ -57,7 +57,8 @@ function cuerpo() {
     echo "<br>".$instrumentoViento1->metodoReciclado();
 
     $instrumentoViento1->envejecer(); // Usar el método envejecer para aumentar la edad del instrumento 1 año
-    echo "<br>Edad después de usar método envejecer()=> ". $instrumentoViento1->getEdad() . " años";
+    echo "<h3>envejecer()</h3>";
+    echo "<br>Edad de \$instrumentoViento1 después de usar método envejecer()=> ". $instrumentoViento1->getEdad() . " años";
     echo "<hr>";
 
     /* Prueba ejercicio 4 */
@@ -67,6 +68,51 @@ function cuerpo() {
     echo $flauta2;
     echo "<hr>";
 
+    /* Prueba ejercicio 5 */
+    do
+    {
+        $e = EstadoCivil::tryFrom(rand(10,40));
+    } while (!isset($e));
+
+    $persona1 = Persona::registrarPersona("Juan Gerardo Díaz", "08/05/2007", "casa 1", "Antequera", $e);
     
+    echo "<h1>Ejercicio 5</h1>";
+    echo $persona1;
+    echo "<h3>Mostrar todos los estados civiles</h3>";
+    foreach (EstadoCivil::obtenerEstadosCiviles() as $estado) {
+        echo $estado->getDescripcion(). " con valor ". $estado->getValor() ."<br>";
+    }
+
+    echo "<hr>";
+    
+    /* Prueba ejercicio 6 */
+    echo "<h1>Ejercicio 6</h1>";
+    foreach(new SerieFibonacci(10) as $valor)
+    {
+        echo "$valor &nbsp;";
+    }
+
+    echo "<br>";
+
+    foreach(SerieFibonacci::fFibonacci(10) as $valor)
+    {
+        echo "$valor &nbsp;";
+    }
+
+    /* Prueba ejercicio 7 */
+    echo "<hr>";
+    echo "<h1>Ejercicio 7</h1>";
+    $Objeto= new ClaseMisPropiedades();
+    $Objeto->_propPublica="publica";
+    //$Objeto->_propPrivada=”privada”; //no es valida al ser privada
+    $Objeto->propiedad1=25;
+    $Objeto->propiedad2="cadena de texto";
+    echo "la propiedad 1 vale ". $Objeto->propiedad1 ."<br>";
+    // echo $Objeto->propiedad3; // esto debería dar un error al no haber asignado previamente la propiedad
+
+    foreach($Objeto as $clave=>$val)
+    {
+        echo $clave. " => " .$val ."<br>";
+    }
 }
 

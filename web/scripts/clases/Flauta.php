@@ -44,10 +44,14 @@ final class Flauta extends InstrumentoViento
      * Método que devuelve una copia de la instancia del 
      * objeto Flauta por el que ha sido llamado el método
      * 
-     * @return Flauta devuelve un objeto Flauta
      */
-    public function clonacion(): Flauta
+    public function __clone()
     {
-        return new Flauta($this->_material, 0);
+        $this->_material;
+        $this->_edad=0;
+
+        /* Aumento el número de instancias */
+        $this->_numElem++;
+        InstrumentoBase::$_elemCreados++;
     }
 }
