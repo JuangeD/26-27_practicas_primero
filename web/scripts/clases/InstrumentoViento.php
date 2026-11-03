@@ -6,7 +6,7 @@
  * 
  * @author Juan Gerardo Díaz Hurtado
  */
-class InstrumentoViento extends InstrumentoBase implements IFabricable
+class InstrumentoViento extends InstrumentoBase
 {
     protected string $_material = "madera";
 
@@ -27,21 +27,6 @@ class InstrumentoViento extends InstrumentoBase implements IFabricable
     public final function afinar(): string
     {
         return "Calentar el instrumento de 10 a 15 minutos, usar una referencia electrónica, afinar el sonido y estabilizar el aire";
-    }
-
-    /* ====== MÉTODOS DE LA INTERFAZ IMPLEMENTADOS ====== */
-    #[Override]
-    public function metodoFabricacion(): string
-    {
-        return "Se funde o moldea el cuerpo, se taladra el tubo interior 
-        con precisión matemática y se suelda un complejo mecanismo de llaves mecánicas.";
-    }
-
-    #[Override]
-    public function metodoReciclado(): string
-    {
-        return "Llévalo a un punto limpio municipal o dónalo a una escuela de 
-        música o asociación para que aprovechen sus piezas metálicas.";
     }
 
     /* ====== TOSTRING() ====== */

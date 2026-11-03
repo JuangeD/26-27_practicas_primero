@@ -7,7 +7,7 @@
  * 
  * @author Juan Gerardo Díaz Hurtado
  */
-final class Flauta extends InstrumentoViento
+final class Flauta extends InstrumentoViento implements IFabricable
 {
     private function __construct(string $material="madera", int $edad=15)
     {
@@ -38,6 +38,21 @@ final class Flauta extends InstrumentoViento
         
         return $obj;
 
+    }
+
+    /* ====== MÉTODOS DE LA INTERFAZ IMPLEMENTADOS ====== */
+    #[Override]
+    public function metodoFabricacion(): string
+    {
+        return "Se funde o moldea el cuerpo, se taladra el tubo interior 
+        con precisión matemática y se suelda un complejo mecanismo de llaves mecánicas.";
+    }
+
+    #[Override]
+    public function metodoReciclado(): string
+    {
+        return "Llévalo a un punto limpio municipal o dónalo a una escuela de 
+        música o asociación para que aprovechen sus piezas metálicas.";
     }
 
     /**
