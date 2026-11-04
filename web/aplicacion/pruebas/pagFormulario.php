@@ -15,6 +15,29 @@ $barra = [
     ]
 ];
 
+$res=filter_var(12, FILTER_VALIDATE_INT);
+
+$o = [
+    "options"=>[
+        "min_range"=>100,
+        "max_range"=>200,
+        "default"=>100
+    ]
+];
+
+$res=filter_var(12, FILTER_VALIDATE_INT, $o);
+
+$o = [
+    "options"=>[
+        "min_range"=>100,
+        "max_range"=>200,
+        "default"=>100
+    ],
+    "flags"=>FILTER_FLAG_ALLOW_HEX
+];
+
+$res=filter_var('0x81', FILTER_VALIDATE_INT, $o);
+
 // inicializadores
 $datos = [
     "nombre" => "Juange",
@@ -42,7 +65,7 @@ if (isset($_POST["crear"])) {
         $precio = floatval($_POST["precio"]);
     }
     if ($precio <= 0)
-        $errores["precio"][] = "Debe indicarse un precio";
+        $errores["precio"][] = "Debe indicarse un precio positivo";
     $datos["precio"] = $precio;
     
     if (!$errores) //no hay errores hago la insercion
@@ -51,7 +74,7 @@ if (isset($_POST["crear"])) {
         $codigo = 1; //codigo
         //se guarda el articulo
         //ir a ver el articulo insertado
-        header("location: verArticulo.php?id=$codigo");
+        // header("location: verArticulo.php?id=$codigo");
         exit;
     }
 }
