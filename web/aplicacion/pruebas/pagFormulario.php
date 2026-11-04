@@ -120,7 +120,16 @@ function formulario(array $datos, array $errores)
         <input type="text" name="precio" id="precio"
             value="<?php echo $datos["precio"]; ?>" size=4
             maxlength="3"><br>
+
+        Elige una de estas opciones: <br />
+        <input type="checkbox" name="opciones[]" value="menor"> Menor de edad <br />
+        <input type="checkbox" name="opciones[]" value="minusvalia"> Minusvalía <br />
+        <input type="checkbox" name="opciones[]" value="numerosa"> Familia numerosa <br />
+        <input type="checkbox" name="opciones[]" value="mínima"> Renta mínima <br />
+
+
         <input type="submit" class="boton" value="Crear" name="crear">
+
     </form>
 <?php
 
