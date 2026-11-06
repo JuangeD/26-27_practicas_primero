@@ -48,3 +48,31 @@ function validaReal(float &$var, float $min, float $max, float $defecto): bool
 
     return $res;
 }
+
+/**
+ * Función que valida si una fecha está en formato dd/mm/aaaa.
+ * Si no lo está devuelve el valor por defecto
+ * 
+ * @param string $var
+ * @param string $defecto
+ * @return bool|int
+ */
+function validaFecha(string &$var, string $defecto): bool 
+{
+    $res = true;
+    $expr = "/\d{1,2}\/\d{1,2}\/\d{4}/";
+
+    $res = preg_match($expr, $var);
+
+    if(!$res)
+    {
+        $var = $defecto;
+        $res = false;
+    }
+
+    if($res===true)
+        $var = date("dd/mm/YYYY", $var);
+
+
+    return $res;
+}

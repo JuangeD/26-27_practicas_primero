@@ -16,19 +16,25 @@ namespace VALFILTER;
  */
 function validaEntero(int &$var, int $min, int $max, int $defecto): bool
 {
-    $valido=false;
+    $res=true;
 
     $opciones = [
         "options"=>[
             "min_range"=>$min,
             "max_range"=>$max,
-            "default"=>$defecto
         ]
     ];
+    
 
-    $res=filter_var($var, FILTER_VALIDATE_INT, $opciones);
+    if(filter_var($var, FILTER_VALIDATE_INT, $opciones)===false)
+    {
+        $var=$defecto;
+        $res=false;
+    }
+        
+    $var=filter_var($var, FILTER_SANITIZE_NUMBER_INT);
 
-    return $valido;
+    return $res;
 }
 
 /**
@@ -44,12 +50,23 @@ function validaEntero(int &$var, int $min, int $max, int $defecto): bool
  */
 function validaReal(float &$var, float $min, float $max, float $defecto): bool
 {
-    $res=false;
+    $res=true;
 
-    if(($var>$min) && ($var<$max))
-        $res=true;
-    else
+    $opciones = [
+        "options"=>[
+            "min_range"=>$min,
+            "max_range"=>$max,
+        ]
+    ];
+    
+
+    if(filter_var($var, FILTER_VALIDATE_FLOAT, $opciones)===false)
+    {
         $var=$defecto;
+        $res=false;
+    }
+        
+    $var=filter_var($var, FILTER_SANITIZE_NUMBER_FLOAT);
 
     return $res;
 }

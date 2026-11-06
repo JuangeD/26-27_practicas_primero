@@ -1,18 +1,18 @@
 <?php
-include_once(dirname(__FILE__) . "/../../cabecera.php"); 
-        
+include_once(dirname(__FILE__) . "/../../cabecera.php");
+
 //controlador
-$barra=[
+$barra = [
     [
-        "TEXTO"=>"inicio",
-        "ENLACE"=>"/index.php"
+        "TEXTO" => "inicio",
+        "ENLACE" => "/index.php"
     ],
     [
-        "TEXTO"=>"pruebas",
-        "ENLACE"=>"/aplicacion/pruebas/index.php"
+        "TEXTO" => "pruebas",
+        "ENLACE" => "/aplicacion/pruebas/index.php"
     ],
     [
-        "TEXTO"=>"Expr. Regulares"
+        "TEXTO" => "Expr. Regulares"
     ]
 ];
 
@@ -20,35 +20,53 @@ $barra=[
 
 $cadena = 'tienes 25 años';
 
-    // Buscar la palabra años
-    $expr = '/años/';
-    $resultado = [];
+// Buscar la palabra años
+$expr = '/años/';
+$resultado = [];
 
-    preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE); // Vuelca a un array el resultado
-    // Con la flag 'PREG_OFFSET_CAPTURE' almacenamos la posición de la ocurrencia en la cadena
+preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE); // Vuelca a un array el resultado
+// Con la flag 'PREG_OFFSET_CAPTURE' almacenamos la posición de la ocurrencia en la cadena
 
-    // Buscar número
-    $expr='/[0123456789]+/'; // Búsqueda de una o más ocurrencias de un número
-    $expr='/[0-9]+/';
-    $expr='/\d+/';
-     $expr='/[[:digit:]]+/';
+// Buscar número
+$expr = '/[0123456789]+/'; // Búsqueda de una o más ocurrencias de un número
+$expr = '/[0-9]+/';
+$expr = '/\d+/';
+$expr = '/[[:digit:]]+/';
 
-    // Busco un número con dos cifras
-    $expr='/\d{2}/'; // Indica una ocurrencia númerica con dos dígitos
+// Busco un número con dos cifras
+$expr = '/\d{2}/'; // Indica una ocurrencia númerica con dos dígitos
 
-    // Buscar un número decimal
-    $expr='/\d+\.\d+/'; // Al tener el '.' un significado especial se debe escapar con el carácter '\'
+// Buscar un número decimal
+$expr = '/\d+\.\d+/'; // Al tener el '.' un significado especial se debe escapar con el carácter '\'
 
-    // Buscar años y Años
-    $expr='/años/i'; // Con el modificador 'i' es insensible a mayúsculas y minúsculas, es decir, no se distinguen
+// Buscar años y Años
+$expr = '/años/i'; // Con el modificador 'i' es insensible a mayúsculas y minúsculas, es decir, no se distinguen
 
-    // SUBPATRONES **************
-    // quiero encontrar en un número real la parte decimal
-    $expr='/\d+\.(\d)+/'; // Devuelve toda la ocurrencia y, además, devuelve un subpatrón con la parte decimal
-    // El subpatrón se indica poniendo la parte que se quiere obtener como subpatron entre paréntesis
+// SUBPATRONES **************
+// quiero encontrar en un número real la parte decimal
+$expr = '/\d+\.(\d)+/'; // Devuelve toda la ocurrencia y, además, devuelve un subpatrón con la parte decimal
+// El subpatrón se indica poniendo la parte que se quiere obtener como subpatron entre paréntesis
 
 
-    $expr='/\/\*.*\*\//'; // Obtener comentarios tales que así /* Primer comentario */
+$expr = '/\/\*.*\*\//'; // Obtener comentarios tales que así /* Primer comentario */
+
+// busqueda
+$expr = "/\w+(?=;)/"; // Busca un ; inmediatamente después de los caracateres buscados
+$cadena = "primera ; segunda tercera; cuarta quinta";
+preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE);
+
+$expr = "/\w+(?=.*;)/"; // Busca un ; después de los caracteres buscados
+$cadena = "primera ; segunda tercera; cuarta quinta";
+preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE);
+
+// Comprobar contraseña
+$expr = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@!%*?&\-_+])[A-Za-z\d$@!%*?&\-_+]{8,15}$/"; // Los paréntesis con la interrogación son condicionales de la expresión, caracteres o dígitos que deben o no aparecer
+$cadena = "AAAAAbbb11";
+preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE);
+
+$expr = "/(?<=;)\w+/"; // Debe encontrar cualquier coincidencia de la expresión que tenga antes un ; y cualquier cosa
+$cadena = ";primera ; segunda tercera; cuarta quinta";
+preg_match($expr, $cadena, $resultado, PREG_OFFSET_CAPTURE);
 
 //dibuja la plantilla de la vista
 inicioCabecera("APLICACION PRIMER TRIMESTRE");
@@ -68,8 +86,6 @@ function cuerpo()
 ?>
     <!-- HTML -->
 <?php
-    
+
 
 }
-
-
