@@ -1,7 +1,5 @@
 <?php
 
-use function VALFILTER\validaEntero;
-
 include_once(dirname(__FILE__) . "/../../cabecera.php");
 
 //CONTROLADOR
@@ -14,6 +12,11 @@ $barra=[
         "TEXTO"=>"relacion5"
     ]
 ];
+
+$valores = [
+    
+];
+$errores = [];
 
 
 //*****************************
