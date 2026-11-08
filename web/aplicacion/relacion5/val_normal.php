@@ -200,7 +200,7 @@ function validaRango(mixed $var, array $posibles, int $tipo=1): bool
     switch($tipo)
     {
         case 1:
-            if(array_search($var, $posibles, true))
+            if(in_array($var, $posibles, true))
                 $res = true;
         break;
         case 2:
