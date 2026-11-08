@@ -1,7 +1,5 @@
 <?php
 
-namespace VALFILTER;
-
 use DateTime;
 
 /*====== FUNCIONES ======*/

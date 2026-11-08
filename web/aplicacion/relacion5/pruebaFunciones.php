@@ -68,12 +68,12 @@ function cuerpo() {
 
     echo "<h3>validaFecha()</h3>";
     echo "Variable \$fecha antes de la función: $fecha<br>";
-    \VALNORMAL\validaFecha($fecha, new DateTime("now")->format("d/m/Y"));
+    \VALNORMAL\validaFecha($fecha, new DateTime()->format("d/m/Y"));
     echo "Variable \$fecha después de la función: $fecha";  
 
     echo "<h3>validaHora()</h3>";
     echo "Variable \$hora antes de la función: $hora<br>";
-    \VALNORMAL\validaHora($hora, new DateTime("now")->format("H:i:s"));
+    \VALNORMAL\validaHora($hora, new DateTime()->format("H:i:s"));
     echo "Variable \$hora después de la función: $hora";
 
     echo "<h3>validaEmail()</h3>";
@@ -128,12 +128,12 @@ function cuerpo() {
 
     echo "<h3>validaFecha()</h3>";
     echo "Variable \$fecha antes de la función: $fecha<br>";
-    \VALFILTER\validaFecha($fecha, new DateTime("now")->format("d/m/Y"));
+    \VALFILTER\validaFecha($fecha, new DateTime()->format("d/m/Y"));
     echo "Variable \$fecha después de la función: $fecha";
 
     echo "<h3>validaHora()</h3>";
     echo "Variable \$hora antes de la función: $hora<br>";
-    \VALFILTER\validaHora($hora, new DateTime("now")->format("H:i:s"));
+    \VALFILTER\validaHora($hora, new DateTime()->format("H:i:s"));
     echo "Variable \$hora después de la función: $hora";
     
     echo "<h3>validaEmail()</h3>";
