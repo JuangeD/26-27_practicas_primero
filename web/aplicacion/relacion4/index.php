@@ -51,10 +51,6 @@ function cuerpo() {
     echo "<br>Sonido => ".$instrumentoViento1->sonido();
     echo "<h3>afinar()</h3>";
     echo "<br>Afinar => ".$instrumentoViento1->afinar();
-    echo "<h3>metodoFabricacion()</h3>";
-    echo "<br>".$instrumentoViento1->metodoFabricacion();
-    echo "<h3>metodoReciclado()</h3>";
-    echo "<br>".$instrumentoViento1->metodoReciclado();
 
     $instrumentoViento1->envejecer(); // Usar el método envejecer para aumentar la edad del instrumento 1 año
     echo "<h3>envejecer()</h3>";
@@ -64,6 +60,10 @@ function cuerpo() {
     /* Prueba ejercicio 4 */
     echo "<h1>Ejercicio 4</h1>";
     echo $flauta1;
+    echo "<h3>metodoFabricacion()</h3>";
+    echo "<br>".$flauta1->metodoFabricacion();
+    echo "<h3>metodoReciclado()</h3>";
+    echo "<br>".$flauta1->metodoReciclado();
     echo "<h3>Flauta clonada</h3>";
     echo $flauta2;
     echo "<hr>";
