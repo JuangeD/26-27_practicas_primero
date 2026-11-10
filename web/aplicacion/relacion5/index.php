@@ -29,19 +29,19 @@ if(isset($_POST["envio"]))
     $nacimiento = $_POST["nacimiento"];
     $carnet = $_POST["diaCarnet"] . "/" . $_POST["mesCarnet"] . "/" . $_POST["anioCarnet"];
     $levantarse = $_POST["levantarse"];
-    $estado = htmlspecialchars($_POST["estado"]);
-    $estudios = $_POST["estudios"];
+    $estado = isset($_POST["estado"])?htmlspecialchars($_POST["estado"]):0;
+    $estudios = isset($_POST["estudios"])?$_POST["estudios"]:null;
     $hermanos = $_POST["hermanos"];
     $sueldo = $_POST["sueldo"];
 
     /* Validación del nombre */
-    if(($nombre==="") && !validaExpresion($nombre, "/^[^H][A-Z]{1,25}/", "NOMBRE DEFECTO"))
+    if(($nombre==="") && !validaExpresion($nombre, "/^[^H][A-Z]{1,25}/", $nombre))
         $errores["nombre"][] = "Nombre: máximo 25 caracteres y no puede estar vacío ni empezar por H";
 
     $valores["nombre"]=$nombre;
 
     /* Validación de contraseña */
-    if(!validaExpresion($contrasenia, "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\$_\-;<>@])[A-Za-z\d\$_\-;<>@]{8,15}/", "contraseña"))
+    if(($contrasenia==="") && !validaExpresion($contrasenia, "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\$_\-;<>@])[A-Za-z\d\$_\-;<>@]{8,15}/", $contrasenia))
         $errores["contrasenia"][] = "Contraseña: debe tener mínimo 8 caracteres, con caracteres especiales, mayúsculas, minúsculas y una cifra";
 
     $valores["contrasenia"]=$contrasenia;
@@ -53,13 +53,13 @@ if(isset($_POST["envio"]))
     $valores["repetirContrasenia"]=$repetirContrasenia;
 
     /* Validación de fecha nacimiento */
-    if(!validaFecha($nacimiento, new DateTime()->format("d/m/Y")))
+    if(($nacimiento==="") && !validaFecha($nacimiento, new DateTime()->format("d/m/Y")))
         $errores["nacimiento"][] = "Nacimiento: la fecha de nacimiento tiene que tener el formato dd/mm/aaaa";
 
     $valores["nacimiento"]=$nacimiento;
 
     /* Validación de fecha de carnet */
-    if(!validaFecha($carnet, new DateTime()->format("d/m/Y")))
+    if(($carnet==="") && !validaFecha($carnet, new DateTime()->format("d/m/Y")))
     {
         $errores["carnet"][] = "Carnet: la fecha de carnet tiene que tener el formato dd/mm/aaaa";
     }
@@ -75,42 +75,52 @@ if(isset($_POST["envio"]))
     $valores["carnet"]=$carnet;
 
     /* Validación de hora de levantarse */
-    if(!validaHora($levantarse, new DateTime()->format("H:i:s")))
+    if(($levantarse==="") && !validaHora($levantarse, new DateTime()->format("H:i:s")))
         $errores["levantarse"][]="Hora de levantarse: debe indicarse la hora en formato hh:mm:ss";
 
     $valores["levantarse"]=$levantarse;
 
     /* Validación del estado */
-    if(!validaEntero($estado, 1, 4, 1))
+    if((!isset($estado)) && !validaEntero($estado, 1, 4, 1))
         $errores["estado"][]="Estado: debe indicarse mínimo un estado";
-
-    switch($estado)
+    else 
     {
-        case 1:
-            $valores["estado"]="estudiante";
-        break;
-        case 2:
-            $valores["estado"]="en paro";
-        break;
-        case 3:
-            $valores["estado"]="trabajando";
-        break;
-        case 4:
-            $valores["estado"]="jubilado";
-        break;
+
+        switch($estado)
+        {
+            case 1:
+                $valores["estado"]="estudiante";
+            break;
+            case 2:
+                $valores["estado"]="en paro";
+            break;
+            case 3:
+                $valores["estado"]="trabajando";
+            break;
+            case 4:
+                $valores["estado"]="jubilado";
+            break;
+            default: 
+        }
+
     }
+    
 
     /* Validación de estudios */
     if(!isset($estudios))
         $errores["estudios"][]="Estudios: debe indicarse al menos una titulación";
-
-    if(count($estudios)>6)
-        $errores["estudios"][]="Estudios: se debe indicar un código de opción válido de entre 0 y 5";
-    
-    if(validaRango(0, $estudios))
-        $valores["estudios"]=[0=>"0"];
     else
-        $valores["estudios"]=$estudios;
+    {
+        if(count($estudios)>6)
+        $errores["estudios"][]="Estudios: se debe indicar un código de opción válido de entre 0 y 5";
+        else
+            if(validaRango(0, $estudios))
+                $valores["estudios"]=[0=>"0"];
+            else
+                $valores["estudios"]=$estudios;
+
+    }
+    
 
     /* Validación del número de hermanos */
     if(!validaEntero($hermanos, 0, 20, 0))
@@ -235,11 +245,11 @@ function mostrarFormulario(array $valores, array $errores)
         <br>
         <!-- CAMPO DE FECHA CARNET -->
         <label for="carnet"><strong>Fecha carnet:</strong> </label>
-        <input type="text" name="diaCarnet" id="diaCarnet" value="<?php if(isset($valores["carnet"])) echo $valores["carnet"]->format("d") ?>">
+        <input type="text" name="diaCarnet" id="diaCarnet" value="<?php if((isset($valores["carnet"])) && $valores["carnet"]!=="//") echo DateTime::createFromFormat("d/m/Y", $valores["carnet"])->format("d"); else new DateTime()->format("d") ?>">
         /
-        <input type="text" name="mesCarnet" id="mesCarnet" value="<?php if(isset($valores["carnet"])) echo $valores["carnet"]->format("m") ?>">
+        <input type="text" name="mesCarnet" id="mesCarnet" value="<?php if((isset($valores["carnet"])) && $valores["carnet"]!=="//") echo DateTime::createFromFormat("d/m/Y", $valores["carnet"])->format("m"); else new DateTime()->format("m") ?>">
         /
-        <input type="text" name="anioCarnet" id="anioCarnet" value="<?php if(isset($valores["carnet"])) echo $valores["carnet"]->format("Y") ?>">
+        <input type="text" name="anioCarnet" id="anioCarnet" value="<?php if((isset($valores["carnet"])) && $valores["carnet"]!=="//") echo DateTime::createFromFormat("d/m/Y", $valores["carnet"])->format("Y"); else new DateTime()->format("Y") ?>">
         <br>
         <br>
         <!-- CAMPO DE HORA DE LEVANTARSE -->
