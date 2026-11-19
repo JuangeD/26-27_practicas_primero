@@ -84,3 +84,37 @@ function mostrarErroresLinea(string $campo, array $errores, string $etiqueta="sp
         }
     return $cadena;
 }
+
+/* ====== FUNCIONES DE FICHEROS ====== */
+function escrituraFichero(string $nombre, ?array $datos=null): bool
+{
+    $rutaBase = RUTABASE."/ficheros";
+
+    if(!file_exists($rutaBase)) // Compruebo que existe la ruta
+        mkdir($rutaBase); // Si no existe la creo
+
+    $rutaBase .= "/$nombre"; // Añado a la ruta el nombre del fichero
+
+    if(!isset($datos)) // Si no se pasan datos se devuelve false
+        return false;
+
+    $fiAbierto = fopen($rutaBase, "a"); // Abro el flujo de datos de escritura
+
+    if(!$fiAbierto) // Compruebo que el fichero exista y se haya abierto el flujo de datos
+        return false;
+
+    /* Recorro y almaceno los datos */
+    foreach($datos as $fila) // Recorro las filas
+    {
+        $linea = "";
+        foreach($fila as $col) // Recorro las columnas (datos de cada subarray) de cada fila
+        {
+            $linea .= "$col;";
+        }
+        $linea .= "\r\n";
+
+        fputs($fiAbierto, $linea); // Escribo en el fichero la linea generada
+    }
+
+    return true; // Cierre de fichero
+}

@@ -103,7 +103,7 @@ class Punto {
         $val = false;
 
         if($val = validaEntero($var, array_key_first(Punto::GROSORES), array_key_last(Punto::GROSORES), $var))
-            $this->_color = $var;
+            $this->_grosor = $var;
 
         return $val;
     }

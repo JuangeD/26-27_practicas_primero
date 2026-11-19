@@ -30,3 +30,8 @@ include(RUTABASE."/scripts/librerias/validacion.php");
 include(RUTABASE."/scripts/librerias/funcionesVarias.php");
 
 //creo todos los objetos que necesita mi aplicación
+$puntos = [
+    new Punto(100, 200, "blue", 3),
+    new Punto(300, 150, "green", 1),
+    new Punto(50,  400, "red", 2)
+];
