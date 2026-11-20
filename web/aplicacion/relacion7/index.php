@@ -13,28 +13,7 @@ $barra=[
     ]
 ];
 
-/* Obtengo la dirección IP y navegador que usa el usuario al ejecutar la aplicación */
-$dirIp = str_replace(".", "_", $_SERVER['REMOTE_ADDR']); // Dirección ip desde la que se ha realizado la petición
-$navegador = "otro";
-$userAgent = $_SERVER['HTTP_USER_AGENT'];
-
-/* Según la cadena que se encuentre en el HTTP_USER_AGENT se asignará un navegador u otro */
-if(mb_stripos($userAgent, 'Edg'))
-    $navegador = "edge";
-
-if(mb_stripos($userAgent, 'Opr') || mb_stripos($userAgent, 'OPR'))
-    $navegador = "opera";
-
-if(mb_stripos($userAgent, 'Chrome'))
-    $navegador = "chrome";
-
-if(mb_stripos($userAgent, 'Firefox'))
-    $navegador = "firefox";
-
-if(mb_stripos($userAgent, 'Safari'))
-    $navegador = "safari";
-
-$nombreArchivo = "imagen_". $dirIp ."_$navegador"; // Nombre del archivo
+$nombreArchivo = "imagen_".obtenerIpNavegador(); // Nombre del archivo
 
 /* Datos del formulario */
 $datos = [

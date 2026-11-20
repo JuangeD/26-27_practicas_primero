@@ -30,8 +30,20 @@ include(RUTABASE."/scripts/librerias/validacion.php");
 include(RUTABASE."/scripts/librerias/funcionesVarias.php");
 
 //creo todos los objetos que necesita mi aplicación
-$puntos = [
-    new Punto(100, 200, "blue", 3),
-    new Punto(300, 150, "green", 1),
-    new Punto(50,  400, "red", 2)
-];
+$puntos = null;
+$datos = [];
+
+if(lecturaFichero("imagen_".obtenerIpNavegador(), $datos))
+{
+    foreach([array_values($datos)] as $valor)
+    {
+
+    }
+}
+else {
+    $puntos = [
+        new Punto(100, 200, "blue", 3),
+        new Punto(300, 150, "green", 1),
+        new Punto(50,  400, "red", 2)
+    ];
+}
