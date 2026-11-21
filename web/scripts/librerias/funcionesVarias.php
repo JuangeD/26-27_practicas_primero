@@ -99,7 +99,7 @@ function escrituraFichero(string $nombre, ?array $datos = null): bool
     if (!isset($datos)) // Si no se pasan datos se devuelve false
         return false;
 
-    $fiAbierto = fopen($rutaBase, "a"); // Abro el flujo de datos de escritura
+    $fiAbierto = fopen($rutaBase, "w"); // Abro el flujo de datos de escritura
 
     if (!$fiAbierto) // Compruebo que el fichero exista y se haya abierto el flujo de datos
         return false;
@@ -135,6 +135,10 @@ function lecturaFichero(string $nombre, ?array &$datos = null): bool
 
     if (!isset($datos))
         return false;
+
+    if(!file_exists($rutaBase))
+        return false;
+
 
     $fiAbierto = fopen($rutaBase, "r");
 

@@ -14,6 +14,22 @@ $barra=[
 ];
 
 $nombreArchivo = "imagen_".obtenerIpNavegador(); // Nombre del archivo
+$actualizarImg = false;
+
+if(isset($_POST["borrar"]) && isset($_POST["borrarPunto"]))
+{
+    unset($puntos[intval($_POST["borrarPunto"])]);
+
+    $datos = [];
+
+    foreach($puntos as $punto)
+    {
+        $datos[] = [$punto->getPosX(), $punto->getPosY(), $punto->getColor(), $punto->getGrosor()];
+    }
+
+    escrituraFichero("$nombreArchivo.dat", $datos);
+    $actualizarImg = true;
+}
 
 /* Datos del formulario */
 $datos = [
@@ -23,17 +39,6 @@ $datos = [
     "grosor"=>2
 ];
 $errores = []; // Errores
-
-// Creación de la imagen
-$imagen = imagecreatetruecolor(501,501);
-
-/* Pinto el fondo blanco de la imagen */
-$blanco = imagecolorallocate($imagen, 255, 255, 255);
-imagefill($imagen, 0, 0, $blanco);
-
-/* Pinto el marco negro de la imagen */
-$negro = imagecolorallocate($imagen, 0, 0, 0);
-imagerectangle($imagen, 0, 0, 500, 500, $negro);
 
 if(isset($_POST["guardar"]))
 {
@@ -56,19 +61,51 @@ if(isset($_POST["guardar"]))
 
     if(empty($errores))
     {
-        escrituraFichero("$nombreArchivo.dat", [array_values($datos)]);
+        $datosPunto = [];
+
+        if($puntos === $puntosDefecto)
+            resetPuntos($puntos);
+        else
+        {
+            foreach($puntos as $punto)
+            {
+                $datosPunto[] = [$punto->getPosX(), $punto->getPosY(), $punto->getColor(), $punto->getGrosor()];
+            }
+        }
+        $datosPunto[] = array_values($datos);
+
+        resetPuntos($puntos);
+
+        escrituraFichero("$nombreArchivo.dat", $datosPunto);
+
+        foreach($datosPunto as $p)
+        {
+            $puntos[]=new Punto(intval($p[0]), intval($p[1]), $p[2], intval($p[3]));
+        }
+
         $datos = [
             "cordX"=>0,
             "cordY"=>0,
             "color"=>"black",
             "grosor"=>2
         ];
+        $actualizarImg = true;
     }
 
 }
 
+// Creación de la imagen
+$imagen = imagecreatetruecolor(501,501);
 
-/* Una vez pasadas las comprobaciones, pinto los puntos del array */
+/* Pinto el fondo blanco de la imagen */
+$blanco = imagecolorallocate($imagen, 255, 255, 255);
+imagefill($imagen, 0, 0, $blanco);
+
+/* Pinto el marco negro de la imagen */
+$negro = imagecolorallocate($imagen, 0, 0, 0);
+imagerectangle($imagen, 0, 0, 500, 500, $negro);
+
+/* Una vez creada la base de la imagen, pinto los puntos del array */
 foreach($puntos as $punto)
 {
     $rgb = Punto::COLORES[$punto->getColor()]["rgb"];
@@ -77,9 +114,16 @@ foreach($puntos as $punto)
 }
 
 $rutaImagen = RUTABASE."/imagenes/puntos/$nombreArchivo.jpg";
-$rutaEtiquetaImg = "/imagenes/puntos/$nombreArchivo.jpg";
 
-if(!file_exists($rutaImagen)) // Si la imagen no existe la creo
+if(file_exists($rutaImagen))
+    $rutaEtiquetaImg = "/imagenes/puntos/$nombreArchivo.jpg?v=".filemtime($rutaImagen);
+else
+    $rutaEtiquetaImg = "/imagenes/puntos/$nombreArchivo.jpg";
+
+if(!file_exists(RUTABASE."/ficheros/$nombreArchivo.dat"))
+    $actualizarImg = true;
+
+if($actualizarImg) // Actualizo o creo la imagen
     imagejpeg($imagen, $rutaImagen);
 
 //*****************************
@@ -141,6 +185,18 @@ function cuerpo(array $datos, array $errores, array $puntos, string $ruta) {
         <br>
 
         <input type="submit" name="guardar" value="Guardar" class="boton">
+        <hr>
+        <select name="borrarPunto" class="for_select">
+            <?php 
+                foreach($puntos as $cla => $val)
+                {
+                    echo "<option value='".$cla."' >". "(". strval($val->getPosX()) ."X, ". strval($val->getPosY()) ."Y) >> ". mb_strtoupper(Punto::COLORES[$val->getColor()]["nombre"]) ." - ". mb_strtoupper(Punto::GROSORES[$val->getGrosor()]) ."</option>".PHP_EOL;
+                }
+            ?>
+        </select>
+        <br>
+        <br>
+        <input type="submit" name="borrar" value="Borrar" class="boton">
     </form>
     <hr>
     <textarea name="areaTexto" cols="75" rows="15" ><?php 
@@ -152,4 +208,15 @@ function cuerpo(array $datos, array $errores, array $puntos, string $ruta) {
     <br>
     <img src="<?php echo $ruta ?>" alt="Imagen puntos">
 <?php
+}
+
+
+
+/* ====== FUNCIONES ====== */
+function resetPuntos(array &$puntos): void
+{
+    foreach($puntos as $key => $value)
+    {
+        unset($puntos[$key]);
+    }
 }
