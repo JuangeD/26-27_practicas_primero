@@ -16,6 +16,44 @@ $barra=[
 $nombreArchivo = "imagen_".obtenerIpNavegador(); // Nombre del archivo
 $actualizarImg = false;
 
+/* Subir archivos */
+/* Subir archivos */
+if(isset($_POST["subir"]) && isset($_FILES["ficheroPuntos"]))
+{
+    $file = $_FILES["ficheroPuntos"];
+
+    if($file["error"] === UPLOAD_ERR_OK && mime_content_type($file["tmp_name"]) === "text/plain")
+    {
+        $lineas = file($file["tmp_name"], FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        if(!file_exists(RUTABASE."/ficheros/$nombreArchivo.dat"))
+            resetPuntos($puntos);
+
+        foreach($lineas as $linea)
+        {
+            $campos = explode(";", $linea);
+
+            if(count($campos) === 4)
+            {
+                $x = intval(trim($campos[0]));
+                $y = intval(trim($campos[1]));
+                $color = trim($campos[2]);
+                $grosor = intval(trim($campos[3]));
+            
+                $puntos[] = new Punto($x, $y, $color, $grosor);
+            }
+        }
+
+        $datosPunto = [];
+        foreach($puntos as $punto)
+            $datosPunto[] = [$punto->getPosX(), $punto->getPosY(), $punto->getColor(), $punto->getGrosor()];
+
+        escrituraFichero("$nombreArchivo.dat", $datosPunto);
+        $actualizarImg = true;
+    }
+}
+
+/* Borrar puntos */
 if(isset($_POST["borrar"]) && isset($_POST["borrarPunto"]))
 {
     unset($puntos[intval($_POST["borrarPunto"])]);
@@ -40,6 +78,7 @@ $datos = [
 ];
 $errores = []; // Errores
 
+/* Guardar puntos */
 if(isset($_POST["guardar"]))
 {
     $datos["cordX"] = intval($_POST["cordX"]);
@@ -63,7 +102,7 @@ if(isset($_POST["guardar"]))
     {
         $datosPunto = [];
 
-        if($puntos === $puntosDefecto)
+        if(!file_exists(RUTABASE."/ficheros/$nombreArchivo.dat"))
             resetPuntos($puntos);
         else
         {
@@ -199,6 +238,14 @@ function cuerpo(array $datos, array $errores, array $puntos, string $ruta) {
         <input type="submit" name="borrar" value="Borrar" class="boton">
     </form>
     <hr>
+    <form action="#" method="post" enctype="multipart/form-data">
+        <h3>Subir fichero de puntos</h3>
+        <input type="file" name="ficheroPuntos" accept=".dat">
+        <br><br>
+        <input type="submit" name="subir" value="Subir" class="boton">
+    </form>
+
+    <hr>
     <textarea name="areaTexto" cols="75" rows="15" ><?php 
             foreach($puntos as $punto)
             {
@@ -207,6 +254,9 @@ function cuerpo(array $datos, array $errores, array $puntos, string $ruta) {
     ?></textarea>
     <br>
     <img src="<?php echo $ruta ?>" alt="Imagen puntos">
+    <br>
+    <br>
+    <a href="/aplicacion/relacion7/imagen.php" class="boton">Descargar imagen</a>
 <?php
 }
 
