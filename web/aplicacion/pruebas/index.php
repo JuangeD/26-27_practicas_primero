@@ -51,6 +51,8 @@ function cuerpo()
             <li><a href="cargapagina.php">Ej. Cargar otra pagina</a></li>
             <li>-</li>
             <li><a href="pruebaFicheros.php">Ej. Prueba Ficheros</a></li>
+            <li>-</li>
+            <li><a href="pruebacookie-sesion.php">Ej. Prueba Cookies y Sesion</a></li>
         </ul>
     </nav>
     
