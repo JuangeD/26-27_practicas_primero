@@ -47,6 +47,10 @@ function cuerpo()
             <li><a href="clases.php">Clases</a></li>
             <li>-</li>
             <li><a href="pagFormulario.php">Pag. formulario</a></li>
+            <li>-</li>
+            <li><a href="cargapagina.php">Ej. Cargar otra pagina</a></li>
+            <li>-</li>
+            <li><a href="pruebaFicheros.php">Ej. Prueba Ficheros</a></li>
         </ul>
     </nav>
     
